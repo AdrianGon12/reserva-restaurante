@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6a51f54e63af4ea7a3e993884c371bb2" Name="Diagram1">
+        <EntityTypeShape EntityType="reservaRestauranteModel.Categorias" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="reservaRestauranteModel.Distrito" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="reservaRestauranteModel.Problema" Width="1.5" PointX="8.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="reservaRestauranteModel.Reclamo" Width="1.5" PointX="10.5" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="reservaRestauranteModel.Reseña" Width="1.5" PointX="5.25" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="reservaRestauranteModel.Reserva" Width="1.5" PointX="8.25" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="reservaRestauranteModel.Restaurantes" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="reservaRestauranteModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="reservaRestauranteModel.Usuario" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="reservaRestauranteModel.vListadoReservas" Width="1.5" PointX="7.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="reservaRestauranteModel.vListadoRestaurantes" Width="1.5" PointX="9.75" PointY="7" IsExpanded="true" />
+        <AssociationConnector Association="reservaRestauranteModel.FK__Restauran__idCat__2A4B4B5E" ManuallyRouted="false" />
+        <AssociationConnector Association="reservaRestauranteModel.FK__Restauran__idDis__2B3F6F97" ManuallyRouted="false" />
+        <AssociationConnector Association="reservaRestauranteModel.FK__Reclamo__idProbl__30C33EC3" ManuallyRouted="false" />
+        <AssociationConnector Association="reservaRestauranteModel.FK__Reclamo__idReser__32AB8735" ManuallyRouted="false" />
+        <AssociationConnector Association="reservaRestauranteModel.FK__Reclamo__idUsuar__31B762FC" ManuallyRouted="false" />
+        <AssociationConnector Association="reservaRestauranteModel.FK__Reseña__idRestau__2F10007B" ManuallyRouted="false" />
+        <AssociationConnector Association="reservaRestauranteModel.FK__Reseña__idUsuari__2E1BDC42" ManuallyRouted="false" />
+        <AssociationConnector Association="reservaRestauranteModel.FK__Reserva__idResta__32E0915F" ManuallyRouted="false" />
+        <AssociationConnector Association="reservaRestauranteModel.FK__Reserva__idUsuar__31EC6D26" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

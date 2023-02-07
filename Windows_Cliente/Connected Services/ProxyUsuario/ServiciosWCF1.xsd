@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/ServiciosWCF" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ServiciosWCF" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="UsuarioBE">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Ape_Usuario" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Contra_Usuario" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Correo_Usuario" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Dni_Usuario" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FecRegistro_Usuario" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id_Usuario" type="xs:short" />
+      <xs:element minOccurs="0" name="Naci_Usuario" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Nivel_Usuario" type="xs:short" />
+      <xs:element minOccurs="0" name="Nom_Usuario" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Tele_Usuario" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UsuarioBE" nillable="true" type="tns:UsuarioBE" />
+</xs:schema>

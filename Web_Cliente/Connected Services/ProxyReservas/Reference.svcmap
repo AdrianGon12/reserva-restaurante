@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="83d3abf7-ed3d-432c-9a70-b2593514d7cd" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/ServiciosWCF/ServicioReservas/mex" Protocol="mex" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="724770dc-ae15-4285-a06b-c51e28ee6637" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/ServiciosWCF/ServicioReservas/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="67206801-be33-49aa-9893-ea6f5463fd03" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/ServiciosWCF/ServicioReservas/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="f68b66a2-ab3b-4ee4-8f92-58b04d44da13" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/ServiciosWCF/ServicioReservas/mex" />
+    <MetadataFile FileName="ServiciosWCF.xsd" MetadataType="Schema" ID="a80ab959-634e-4c62-9f87-fc5d3d73538d" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/ServiciosWCF/ServicioReservas/mex" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

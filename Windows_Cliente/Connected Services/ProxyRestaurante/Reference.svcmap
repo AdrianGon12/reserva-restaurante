@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="feec57f6-0261-4812-b42b-b6f5fe889b24" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://DESKTOP-DGAUU9U/WCF_Reservas/ServiciosWCF.ServicioRestaurantes.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServiciosWCF.xsd" MetadataType="Schema" ID="2182d535-37a1-4be2-8863-2722e4baf179" SourceId="1" SourceUrl="http://desktop-dgauu9u/WCF_Reservas/ServiciosWCF.ServicioRestaurantes.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServiciosWCF.disco" MetadataType="Disco" ID="1830be1b-6051-40fd-a32a-93cff382c6d6" SourceId="1" SourceUrl="http://desktop-dgauu9u/WCF_Reservas/ServiciosWCF.ServicioRestaurantes.svc?disco" />
+    <MetadataFile FileName="ServiciosWCF1.xsd" MetadataType="Schema" ID="3d8b3c80-eb51-43ff-a8cc-fd5060c78abf" SourceId="1" SourceUrl="http://desktop-dgauu9u/WCF_Reservas/ServiciosWCF.ServicioRestaurantes.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServiciosWCF2.xsd" MetadataType="Schema" ID="55a795c9-8f16-4821-bacd-9ce6cbecb609" SourceId="1" SourceUrl="http://desktop-dgauu9u/WCF_Reservas/ServiciosWCF.ServicioRestaurantes.svc?xsd=xsd2" />
+    <MetadataFile FileName="ServicioRestaurantes.wsdl" MetadataType="Wsdl" ID="e889813d-0ee7-4243-81ae-5a50e940cdd2" SourceId="1" SourceUrl="http://desktop-dgauu9u/WCF_Reservas/ServiciosWCF.ServicioRestaurantes.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

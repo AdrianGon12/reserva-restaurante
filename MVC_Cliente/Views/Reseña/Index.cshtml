@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "Listado Reseñas";
+}
+
+<section class="drivers-area bg-img" style="background-image: url(https://cdn.otstatic.com/cfe/7/images/restaurateurs-join-us-desktop-51d450.jpg)">
+    <div class="title-area">
+        <p>Listado</p>
+        <h2>Reseñas</h2>
+    </div>
+</section>
+
+<div class="container" style="padding-top: 100px; padding-bottom: 100px;">
+    @using (Html.BeginForm("Buscar", "Reseña"))
+    {
+        <table cellpading="2" cellspacing="2" border="1" width="600">
+            <tr>
+                <td>
+                    @Html.DropDownList("cboRestaurantes", (IEnumerable<SelectListItem>)ViewBag.ListarRestaurantes)
+                </td>
+                <td>
+                    <input type="submit" name="Buscar" />
+                </td>
+            </tr>
+        </table>
+    }
+
+    <table id="table-inicio" class="table">
+        <thead>
+            <tr>
+                <th>Restaurante</th>
+                <th>Título</th>
+                <th>Contenido</th>
+                <th>Fecha</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var reseña in ViewBag.ListarReseñas)
+            {
+                <tr>
+                    <th>@reseña.Nom_Restaurante</th>
+                    <th>@reseña.Titulo_Reseña</th>
+                    <th>@reseña.Contenido_Reseña</th>
+                    <th>@reseña.Fecha_RegistroReseña</th>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

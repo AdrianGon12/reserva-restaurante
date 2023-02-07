@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ServicioReservas" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://desktop-dgauu9u/WCF_Reservas/ServiciosWCF.ServicioReservas.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://desktop-dgauu9u/WCF_Reservas/ServiciosWCF.ServicioReservas.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://desktop-dgauu9u/WCF_Reservas/ServiciosWCF.ServicioReservas.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ServiciosWCF" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IServicioReservas_GetAllReservasCliente_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllReservasCliente" />
+  </wsdl:message>
+  <wsdl:message name="IServicioReservas_GetAllReservasCliente_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllReservasClienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioReservas_GetAllReservasPorDia_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllReservasPorDia" />
+  </wsdl:message>
+  <wsdl:message name="IServicioReservas_GetAllReservasPorDia_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllReservasPorDiaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioReservas_GetAllReservasPorDiaRestaurante_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllReservasPorDiaRestaurante" />
+  </wsdl:message>
+  <wsdl:message name="IServicioReservas_GetAllReservasPorDiaRestaurante_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllReservasPorDiaRestauranteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioReservas_InsertReserva_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertReserva" />
+  </wsdl:message>
+  <wsdl:message name="IServicioReservas_InsertReserva_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertReservaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioReservas_CancelReserva_InputMessage">
+    <wsdl:part name="parameters" element="tns:CancelReserva" />
+  </wsdl:message>
+  <wsdl:message name="IServicioReservas_CancelReserva_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CancelReservaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioReservas_GetAllReservasRestaurante_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllReservasRestaurante" />
+  </wsdl:message>
+  <wsdl:message name="IServicioReservas_GetAllReservasRestaurante_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllReservasRestauranteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioReservas_UpdateEstadoReserva_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateEstadoReserva" />
+  </wsdl:message>
+  <wsdl:message name="IServicioReservas_UpdateEstadoReserva_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateEstadoReservaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioReservas_GetTopUsuariosReservasRestaurante_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTopUsuariosReservasRestaurante" />
+  </wsdl:message>
+  <wsdl:message name="IServicioReservas_GetTopUsuariosReservasRestaurante_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTopUsuariosReservasRestauranteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioReservas_GetCantPersonasReservas_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCantPersonasReservas" />
+  </wsdl:message>
+  <wsdl:message name="IServicioReservas_GetCantPersonasReservas_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCantPersonasReservasResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IServicioReservas">
+    <wsdl:operation name="GetAllReservasCliente">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioReservas/GetAllReservasCliente" message="tns:IServicioReservas_GetAllReservasCliente_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioReservas/GetAllReservasClienteResponse" message="tns:IServicioReservas_GetAllReservasCliente_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllReservasPorDia">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioReservas/GetAllReservasPorDia" message="tns:IServicioReservas_GetAllReservasPorDia_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioReservas/GetAllReservasPorDiaResponse" message="tns:IServicioReservas_GetAllReservasPorDia_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllReservasPorDiaRestaurante">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioReservas/GetAllReservasPorDiaRestaurante" message="tns:IServicioReservas_GetAllReservasPorDiaRestaurante_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioReservas/GetAllReservasPorDiaRestauranteResponse" message="tns:IServicioReservas_GetAllReservasPorDiaRestaurante_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertReserva">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioReservas/InsertReserva" message="tns:IServicioReservas_InsertReserva_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioReservas/InsertReservaResponse" message="tns:IServicioReservas_InsertReserva_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelReserva">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioReservas/CancelReserva" message="tns:IServicioReservas_CancelReserva_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioReservas/CancelReservaResponse" message="tns:IServicioReservas_CancelReserva_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllReservasRestaurante">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioReservas/GetAllReservasRestaurante" message="tns:IServicioReservas_GetAllReservasRestaurante_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioReservas/GetAllReservasRestauranteResponse" message="tns:IServicioReservas_GetAllReservasRestaurante_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateEstadoReserva">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioReservas/UpdateEstadoReserva" message="tns:IServicioReservas_UpdateEstadoReserva_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioReservas/UpdateEstadoReservaResponse" message="tns:IServicioReservas_UpdateEstadoReserva_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTopUsuariosReservasRestaurante">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioReservas/GetTopUsuariosReservasRestaurante" message="tns:IServicioReservas_GetTopUsuariosReservasRestaurante_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioReservas/GetTopUsuariosReservasRestauranteResponse" message="tns:IServicioReservas_GetTopUsuariosReservasRestaurante_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCantPersonasReservas">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioReservas/GetCantPersonasReservas" message="tns:IServicioReservas_GetCantPersonasReservas_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioReservas/GetCantPersonasReservasResponse" message="tns:IServicioReservas_GetCantPersonasReservas_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IServicioReservas" type="tns:IServicioReservas">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAllReservasCliente">
+      <soap:operation soapAction="http://tempuri.org/IServicioReservas/GetAllReservasCliente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllReservasPorDia">
+      <soap:operation soapAction="http://tempuri.org/IServicioReservas/GetAllReservasPorDia" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllReservasPorDiaRestaurante">
+      <soap:operation soapAction="http://tempuri.org/IServicioReservas/GetAllReservasPorDiaRestaurante" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertReserva">
+      <soap:operation soapAction="http://tempuri.org/IServicioReservas/InsertReserva" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelReserva">
+      <soap:operation soapAction="http://tempuri.org/IServicioReservas/CancelReserva" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllReservasRestaurante">
+      <soap:operation soapAction="http://tempuri.org/IServicioReservas/GetAllReservasRestaurante" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateEstadoReserva">
+      <soap:operation soapAction="http://tempuri.org/IServicioReservas/UpdateEstadoReserva" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTopUsuariosReservasRestaurante">
+      <soap:operation soapAction="http://tempuri.org/IServicioReservas/GetTopUsuariosReservasRestaurante" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCantPersonasReservas">
+      <soap:operation soapAction="http://tempuri.org/IServicioReservas/GetCantPersonasReservas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServicioReservas">
+    <wsdl:port name="BasicHttpBinding_IServicioReservas" binding="tns:BasicHttpBinding_IServicioReservas">
+      <soap:address location="http://desktop-dgauu9u/WCF_Reservas/ServiciosWCF.ServicioReservas.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

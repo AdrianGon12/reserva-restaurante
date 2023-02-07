@@ -1,0 +1,245 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F7E6F1C0-4088-43D9-AC33-4BAE593F9577}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ServiciosWCF</RootNamespace>
+    <AssemblyName>ServiciosWCF</AssemblyName>
+    <ProjectTypeGuids>{3D9AD99F-2412-4246-B90B-4EAA41C64699};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <StartArguments>/client:"WcfTestClient.exe"</StartArguments>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
+    <XsdCodeGenEnabled>True</XsdCodeGenEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Categorias.cs">
+      <DependentUpon>reservaRestaurante.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Distrito.cs">
+      <DependentUpon>reservaRestaurante.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IService1.cs" />
+    <Compile Include="IServicioReservas.cs" />
+    <Compile Include="IServicioResenas.cs" />
+    <Compile Include="IServicioRestaurantes.cs" />
+    <Compile Include="IServicioUsuarios.cs" />
+    <Compile Include="Problema.cs">
+      <DependentUpon>reservaRestaurante.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reclamo.cs">
+      <DependentUpon>reservaRestaurante.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reserva.cs">
+      <DependentUpon>reservaRestaurante.tt</DependentUpon>
+    </Compile>
+    <Compile Include="reservaRestaurante.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>reservaRestaurante.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="reservaRestaurante.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>reservaRestaurante.tt</DependentUpon>
+    </Compile>
+    <Compile Include="reservaRestaurante.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>reservaRestaurante.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Reseña.cs">
+      <DependentUpon>reservaRestaurante.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Restaurantes.cs">
+      <DependentUpon>reservaRestaurante.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Service1.cs" />
+    <Compile Include="ServicioReservas.cs" />
+    <Compile Include="ServicioResenas.cs" />
+    <Compile Include="ServicioRestaurantes.cs" />
+    <Compile Include="ServicioUsuarios.cs" />
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>reservaRestaurante.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>reservaRestaurante.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>reservaRestaurante.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_Categorias_Result.cs">
+      <DependentUpon>reservaRestaurante.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_ConsultarReseña_Result.cs">
+      <DependentUpon>reservaRestaurante.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_ConsultarRestauranteWeb_Result.cs">
+      <DependentUpon>reservaRestaurante.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_ConsultarRestaurante_Result.cs">
+      <DependentUpon>reservaRestaurante.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_ConsultarUsuario_Result.cs">
+      <DependentUpon>reservaRestaurante.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_Distritos_Result.cs">
+      <DependentUpon>reservaRestaurante.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_ListarMisReseñas_Result.cs">
+      <DependentUpon>reservaRestaurante.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_ListarReservasPorDiaRestaurante_Result.cs">
+      <DependentUpon>reservaRestaurante.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_ListarReservasPorDia_Result.cs">
+      <DependentUpon>reservaRestaurante.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_ListarReservasRestaurante1_Result.cs">
+      <DependentUpon>reservaRestaurante.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_ListarReservasRestaurantes_Result.cs">
+      <DependentUpon>reservaRestaurante.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_ListarReservasRestaurante_Paginacion_Result.cs">
+      <DependentUpon>reservaRestaurante.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_ListarReservasRestaurante_Result.cs">
+      <DependentUpon>reservaRestaurante.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_ListarReservas_Result.cs">
+      <DependentUpon>reservaRestaurante.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_ListarReseñasTodas_Result.cs">
+      <DependentUpon>reservaRestaurante.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_ListarReseñas_Result.cs">
+      <DependentUpon>reservaRestaurante.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_ListarReseña_Result.cs">
+      <DependentUpon>reservaRestaurante.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_ListarRestauranteActivos_Result.cs">
+      <DependentUpon>reservaRestaurante.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_ListarRestaurantePorCategoriaDistrito_Result.cs">
+      <DependentUpon>reservaRestaurante.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_ListarRestaurantePorCategoria_Result.cs">
+      <DependentUpon>reservaRestaurante.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_ListarRestaurantePorDistrito_Result.cs">
+      <DependentUpon>reservaRestaurante.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_ListarRestaurante_Result.cs">
+      <DependentUpon>reservaRestaurante.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_ListarTodasReseñas_Result.cs">
+      <DependentUpon>reservaRestaurante.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_ListarTopUsuarioReservasPorRestaurante_Result.cs">
+      <DependentUpon>reservaRestaurante.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Usuario.cs">
+      <DependentUpon>reservaRestaurante.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vListadoReservas.cs">
+      <DependentUpon>reservaRestaurante.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vListadoRestaurantes.cs">
+      <DependentUpon>reservaRestaurante.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <EntityDeploy Include="reservaRestaurante.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>reservaRestaurante.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="packages.config" />
+    <None Include="reservaRestaurante.edmx.diagram">
+      <DependentUpon>reservaRestaurante.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="reservaRestaurante.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>reservaRestaurante.Context.cs</LastGenOutput>
+      <DependentUpon>reservaRestaurante.edmx</DependentUpon>
+    </Content>
+    <Content Include="reservaRestaurante.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>reservaRestaurante.edmx</DependentUpon>
+      <LastGenOutput>reservaRestaurante.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <VSToolsPath Condition="'$(VSToolsPath)' == '' and '$(VisualStudioVersion)' != '' and '$(VisualStudioVersion)' != '11.0'">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio</VSToolsPath>
+    <WcfServiceModelTargetPath>$(VSToolsPath)\WCF</WcfServiceModelTargetPath>
+  </PropertyGroup>
+  <Import Project="$(WcfServiceModelTargetPath)\Microsoft.VisualStudio.ServiceModel.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{3D9AD99F-2412-4246-B90B-4EAA41C64699}">
+        <WcfProjectProperties>
+          <AutoStart>True</AutoStart>
+        </WcfProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

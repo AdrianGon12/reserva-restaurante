@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/ServiciosWCF" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ServiciosWCF" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfReservaBE">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReservaBE" nillable="true" type="tns:ReservaBE" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReservaBE" nillable="true" type="tns:ArrayOfReservaBE" />
+  <xs:complexType name="ReservaBE">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Cant_Personas" type="xs:short" />
+      <xs:element minOccurs="0" name="Direc_Restaurante" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Estado_Reserva" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Fecha_Reserva" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id_Reserva" type="xs:short" />
+      <xs:element minOccurs="0" name="Id_Restaurante" type="xs:short" />
+      <xs:element minOccurs="0" name="Id_Usuario" type="xs:short" />
+      <xs:element minOccurs="0" name="Nom_DistritoRestaurante" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Nom_Restaurante" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Usua_Apellido" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Usua_Correo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Usua_Dni" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Usua_Nombre" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReservaBE" nillable="true" type="tns:ReservaBE" />
+</xs:schema>

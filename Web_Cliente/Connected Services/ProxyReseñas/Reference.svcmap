@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="74825e33-8b23-4613-821d-755323d426f5" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/ServiciosWCF/ServicioRese%C3%B1as/mex" Protocol="mex" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="b6da0d42-5e28-4432-97dd-2e4b809df7e9" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/ServiciosWCF/ServicioRese%C3%B1as/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="4932c85f-1ad3-4e28-b70d-6b62ccc7e782" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/ServiciosWCF/ServicioRese%C3%B1as/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="3c0a17b7-b74c-4d61-9ddb-2bceeb0a875a" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/ServiciosWCF/ServicioRese%C3%B1as/mex" />
+    <MetadataFile FileName="ServiciosWCF.xsd" MetadataType="Schema" ID="6b6237ae-a343-4aa7-893a-e4c10820a874" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/ServiciosWCF/ServicioRese%C3%B1as/mex" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

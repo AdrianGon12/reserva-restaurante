@@ -1,0 +1,1769 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="reservaRestauranteModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Categorias">
+          <Key>
+            <PropertyRef Name="idCategoria" />
+          </Key>
+          <Property Name="idCategoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nomCategoria" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Distrito">
+          <Key>
+            <PropertyRef Name="idDistrito" />
+          </Key>
+          <Property Name="idDistrito" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nomDistrito" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Problema">
+          <Key>
+            <PropertyRef Name="idProblema" />
+          </Key>
+          <Property Name="idProblema" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tituloProblema" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reclamo">
+          <Key>
+            <PropertyRef Name="idReclamo" />
+          </Key>
+          <Property Name="idReclamo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idProblema" Type="int" Nullable="false" />
+          <Property Name="idUsuario" Type="int" Nullable="false" />
+          <Property Name="idReserva" Type="int" Nullable="false" />
+          <Property Name="contenidoReclamo" Type="varchar" MaxLength="280" Nullable="false" />
+          <Property Name="fecRegistroReclamo" Type="datetime" />
+          <Property Name="estadoReclamo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reseña">
+          <Key>
+            <PropertyRef Name="idReseña" />
+          </Key>
+          <Property Name="idReseña" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idUsuario" Type="int" Nullable="false" />
+          <Property Name="idRestaurante" Type="int" Nullable="false" />
+          <Property Name="tituloReseña" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="contenidoReseña" Type="varchar" MaxLength="280" Nullable="false" />
+          <Property Name="fecRegistroReseña" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Reserva">
+          <Key>
+            <PropertyRef Name="idReserva" />
+          </Key>
+          <Property Name="idReserva" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idUsuario" Type="int" Nullable="false" />
+          <Property Name="idRestaurante" Type="int" Nullable="false" />
+          <Property Name="fechaReserva" Type="datetime" Nullable="false" />
+          <Property Name="cantPersonas" Type="int" Nullable="false" />
+          <Property Name="estadoReserva" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Restaurantes">
+          <Key>
+            <PropertyRef Name="idRestaurante" />
+          </Key>
+          <Property Name="idRestaurante" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idCategoria" Type="int" Nullable="false" />
+          <Property Name="idDistrito" Type="int" Nullable="false" />
+          <Property Name="nomRestaurante" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="direcRestaurante" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="teleRestaurante" Type="varchar" MaxLength="15" />
+          <Property Name="fecRegistroRestaurante" Type="datetime" />
+          <Property Name="usuRegistroRestaurante" Type="varchar" MaxLength="50" />
+          <Property Name="fecUltModiRestaurante" Type="datetime" />
+          <Property Name="usuUltModiRestaurante" Type="varchar" MaxLength="50" />
+          <Property Name="estadoRestaurante" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="correoUsuario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="contraUsuario" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="dniUsuario" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="nomUsuario" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="apeUsuario" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="teleUsuario" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="naciUsuario" Type="date" />
+          <Property Name="nivelUsuario" Type="int" Nullable="false" />
+          <Property Name="fecRegistroUsurio" Type="datetime" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'reservaRestaurante.dbo.vListadoReservas' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="vListadoReservas">
+          <Key>
+            <PropertyRef Name="idReserva" />
+            <PropertyRef Name="fechaReserva" />
+            <PropertyRef Name="cantPersonas" />
+            <PropertyRef Name="idRestaurante" />
+            <PropertyRef Name="nomRestaurante" />
+            <PropertyRef Name="idUsuario" />
+            <PropertyRef Name="direcRestaurante" />
+            <PropertyRef Name="idDistrito" />
+            <PropertyRef Name="nomDistrito" />
+          </Key>
+          <Property Name="idReserva" Type="int" Nullable="false" />
+          <Property Name="fechaReserva" Type="datetime" Nullable="false" />
+          <Property Name="cantPersonas" Type="int" Nullable="false" />
+          <Property Name="idRestaurante" Type="int" Nullable="false" />
+          <Property Name="nomRestaurante" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="idUsuario" Type="int" Nullable="false" />
+          <Property Name="direcRestaurante" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="idDistrito" Type="int" Nullable="false" />
+          <Property Name="nomDistrito" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Estado" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'reservaRestaurante.dbo.vListadoRestaurantes' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="vListadoRestaurantes">
+          <Key>
+            <PropertyRef Name="idRestaurante" />
+            <PropertyRef Name="idCategoria" />
+            <PropertyRef Name="idDistrito" />
+            <PropertyRef Name="nomRestaurante" />
+            <PropertyRef Name="direcRestaurante" />
+            <PropertyRef Name="estadoRestaurante" />
+            <PropertyRef Name="nomDistrito" />
+            <PropertyRef Name="nomCategoria" />
+          </Key>
+          <Property Name="idRestaurante" Type="int" Nullable="false" />
+          <Property Name="idCategoria" Type="int" Nullable="false" />
+          <Property Name="idDistrito" Type="int" Nullable="false" />
+          <Property Name="nomRestaurante" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="direcRestaurante" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="teleRestaurante" Type="varchar" MaxLength="15" />
+          <Property Name="fecRegistroRestaurante" Type="datetime" />
+          <Property Name="usuRegistroRestaurante" Type="varchar" MaxLength="50" />
+          <Property Name="fecUltModiRestaurante" Type="datetime" />
+          <Property Name="usuUltModiRestaurante" Type="varchar" MaxLength="50" />
+          <Property Name="estadoRestaurante" Type="int" Nullable="false" />
+          <Property Name="nomDistrito" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="nomCategoria" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Estado" Type="varchar" MaxLength="8" />
+        </EntityType>
+        <Association Name="FK__Reclamo__idProbl__30C33EC3">
+          <End Role="Problema" Type="Self.Problema" Multiplicity="1" />
+          <End Role="Reclamo" Type="Self.Reclamo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Problema">
+              <PropertyRef Name="idProblema" />
+            </Principal>
+            <Dependent Role="Reclamo">
+              <PropertyRef Name="idProblema" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reclamo__idReser__32AB8735">
+          <End Role="Reserva" Type="Self.Reserva" Multiplicity="1" />
+          <End Role="Reclamo" Type="Self.Reclamo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reserva">
+              <PropertyRef Name="idReserva" />
+            </Principal>
+            <Dependent Role="Reclamo">
+              <PropertyRef Name="idReserva" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reclamo__idUsuar__31B762FC">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Reclamo" Type="Self.Reclamo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Reclamo">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reseña__idRestau__2F10007B">
+          <End Role="Restaurantes" Type="Self.Restaurantes" Multiplicity="1" />
+          <End Role="Reseña" Type="Self.Reseña" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurantes">
+              <PropertyRef Name="idRestaurante" />
+            </Principal>
+            <Dependent Role="Reseña">
+              <PropertyRef Name="idRestaurante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reseña__idUsuari__2E1BDC42">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Reseña" Type="Self.Reseña" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Reseña">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reserva__idResta__32E0915F">
+          <End Role="Restaurantes" Type="Self.Restaurantes" Multiplicity="1" />
+          <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurantes">
+              <PropertyRef Name="idRestaurante" />
+            </Principal>
+            <Dependent Role="Reserva">
+              <PropertyRef Name="idRestaurante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reserva__idUsuar__31EC6D26">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Reserva">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Restauran__idCat__2A4B4B5E">
+          <End Role="Categorias" Type="Self.Categorias" Multiplicity="1" />
+          <End Role="Restaurantes" Type="Self.Restaurantes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categorias">
+              <PropertyRef Name="idCategoria" />
+            </Principal>
+            <Dependent Role="Restaurantes">
+              <PropertyRef Name="idCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Restauran__idDis__2B3F6F97">
+          <End Role="Distrito" Type="Self.Distrito" Multiplicity="1" />
+          <End Role="Restaurantes" Type="Self.Restaurantes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Distrito">
+              <PropertyRef Name="idDistrito" />
+            </Principal>
+            <Dependent Role="Restaurantes">
+              <PropertyRef Name="idDistrito" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_ActualizarReseña" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idRese" Type="int" Mode="In" />
+          <Parameter Name="tituRese" Type="varchar" Mode="In" />
+          <Parameter Name="contRese" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_ActualizarReserva" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idUsua" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_ActualizarReservaRestaurante" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idResta" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_ActualizarRestaurante" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idResta" Type="int" Mode="In" />
+          <Parameter Name="nomResta" Type="varchar" Mode="In" />
+          <Parameter Name="direcResta" Type="varchar" Mode="In" />
+          <Parameter Name="teleResta" Type="varchar" Mode="In" />
+          <Parameter Name="usuUltModiResta" Type="varchar" Mode="In" />
+          <Parameter Name="estadoResta" Type="int" Mode="In" />
+          <Parameter Name="cateResta" Type="int" Mode="In" />
+          <Parameter Name="distriResta" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_ActualizarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="correoUsu" Type="varchar" Mode="In" />
+          <Parameter Name="nomUsu" Type="varchar" Mode="In" />
+          <Parameter Name="apeUsu" Type="varchar" Mode="In" />
+          <Parameter Name="dniUsu" Type="varchar" Mode="In" />
+          <Parameter Name="teleUsu" Type="varchar" Mode="In" />
+          <Parameter Name="idUsu" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_AñadirReseña" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idUsua" Type="int" Mode="In" />
+          <Parameter Name="idResta" Type="int" Mode="In" />
+          <Parameter Name="tituRese" Type="varchar" Mode="In" />
+          <Parameter Name="contRese" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_CancelarReserva" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idUsua" Type="int" Mode="In" />
+          <Parameter Name="idReser" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_Categorias" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_ConsultarDistrito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idDistri" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_ConsultarReseña" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idRese" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_ConsultarRestaurante" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idResta" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_ConsultarRestauranteWeb" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idResta" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_ConsultarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="correoUsu" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_Distritos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_EliminarReseña" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idRese" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_InsertarReserva" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idUsua" Type="int" Mode="In" />
+          <Parameter Name="idResta" Type="int" Mode="In" />
+          <Parameter Name="fechaReser" Type="datetime" Mode="In" />
+          <Parameter Name="cantPerso" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_InsertarRestaurante" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cateResta" Type="int" Mode="In" />
+          <Parameter Name="distriResta" Type="int" Mode="In" />
+          <Parameter Name="nomResta" Type="varchar" Mode="In" />
+          <Parameter Name="direcResta" Type="varchar" Mode="In" />
+          <Parameter Name="teleResta" Type="varchar" Mode="In" />
+          <Parameter Name="usuRegisResta" Type="varchar" Mode="In" />
+          <Parameter Name="estadoResta" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_ListarMisReseñas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idUsua" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_ListarReseña" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idResta" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_ListarReseñas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idResta" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_ListarReseñasTodas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_ListarReservas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idUsua" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_ListarReservasPorDia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fec" Type="date" Mode="In" />
+        </Function>
+        <Function Name="usp_ListarReservasPorDiaRestaurante" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fec" Type="date" Mode="In" />
+          <Parameter Name="idResta" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_ListarReservasRestaurante" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idResta" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_ListarReservasRestaurante_Paginacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idResta" Type="int" Mode="In" />
+          <Parameter Name="NumPag" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_ListarReservasRestaurantes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idResta" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_ListarRestaurante" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_ListarRestauranteActivos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_ListarRestaurantePorCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idCate" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_ListarRestaurantePorCategoriaDistrito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idCate" Type="int" Mode="In" />
+          <Parameter Name="idDistri" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_ListarRestaurantePorDistrito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idDistri" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_ListarTodasReseñas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_ListarTopUsuarioReservasPorRestaurante" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idResta" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_NumPag_ListarReservasRestaurante_Paginacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idResta" Type="int" Mode="In" />
+          <Parameter Name="NUMREG" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="usp_NumPersonasDiaReservas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fec" Type="date" Mode="In" />
+          <Parameter Name="idResta" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_NumPersonasDiaReservasRestaurante" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fec" Type="date" Mode="In" />
+          <Parameter Name="idResta" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="reservaRestauranteModelStoreContainer">
+          <EntitySet Name="Categorias" EntityType="Self.Categorias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Distrito" EntityType="Self.Distrito" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Problema" EntityType="Self.Problema" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reclamo" EntityType="Self.Reclamo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reseña" EntityType="Self.Reseña" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reserva" EntityType="Self.Reserva" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Restaurantes" EntityType="Self.Restaurantes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vListadoReservas" EntityType="Self.vListadoReservas" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vListadoReservas].[idReserva] AS [idReserva], 
+    [vListadoReservas].[fechaReserva] AS [fechaReserva], 
+    [vListadoReservas].[cantPersonas] AS [cantPersonas], 
+    [vListadoReservas].[idRestaurante] AS [idRestaurante], 
+    [vListadoReservas].[nomRestaurante] AS [nomRestaurante], 
+    [vListadoReservas].[idUsuario] AS [idUsuario], 
+    [vListadoReservas].[direcRestaurante] AS [direcRestaurante], 
+    [vListadoReservas].[idDistrito] AS [idDistrito], 
+    [vListadoReservas].[nomDistrito] AS [nomDistrito], 
+    [vListadoReservas].[Estado] AS [Estado]
+    FROM [dbo].[vListadoReservas] AS [vListadoReservas]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vListadoRestaurantes" EntityType="Self.vListadoRestaurantes" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vListadoRestaurantes].[idRestaurante] AS [idRestaurante], 
+    [vListadoRestaurantes].[idCategoria] AS [idCategoria], 
+    [vListadoRestaurantes].[idDistrito] AS [idDistrito], 
+    [vListadoRestaurantes].[nomRestaurante] AS [nomRestaurante], 
+    [vListadoRestaurantes].[direcRestaurante] AS [direcRestaurante], 
+    [vListadoRestaurantes].[teleRestaurante] AS [teleRestaurante], 
+    [vListadoRestaurantes].[fecRegistroRestaurante] AS [fecRegistroRestaurante], 
+    [vListadoRestaurantes].[usuRegistroRestaurante] AS [usuRegistroRestaurante], 
+    [vListadoRestaurantes].[fecUltModiRestaurante] AS [fecUltModiRestaurante], 
+    [vListadoRestaurantes].[usuUltModiRestaurante] AS [usuUltModiRestaurante], 
+    [vListadoRestaurantes].[estadoRestaurante] AS [estadoRestaurante], 
+    [vListadoRestaurantes].[nomDistrito] AS [nomDistrito], 
+    [vListadoRestaurantes].[nomCategoria] AS [nomCategoria], 
+    [vListadoRestaurantes].[Estado] AS [Estado]
+    FROM [dbo].[vListadoRestaurantes] AS [vListadoRestaurantes]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Reclamo__idProbl__30C33EC3" Association="Self.FK__Reclamo__idProbl__30C33EC3">
+            <End Role="Problema" EntitySet="Problema" />
+            <End Role="Reclamo" EntitySet="Reclamo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reclamo__idReser__32AB8735" Association="Self.FK__Reclamo__idReser__32AB8735">
+            <End Role="Reserva" EntitySet="Reserva" />
+            <End Role="Reclamo" EntitySet="Reclamo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reclamo__idUsuar__31B762FC" Association="Self.FK__Reclamo__idUsuar__31B762FC">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Reclamo" EntitySet="Reclamo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reseña__idRestau__2F10007B" Association="Self.FK__Reseña__idRestau__2F10007B">
+            <End Role="Restaurantes" EntitySet="Restaurantes" />
+            <End Role="Reseña" EntitySet="Reseña" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reseña__idUsuari__2E1BDC42" Association="Self.FK__Reseña__idUsuari__2E1BDC42">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Reseña" EntitySet="Reseña" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reserva__idResta__32E0915F" Association="Self.FK__Reserva__idResta__32E0915F">
+            <End Role="Restaurantes" EntitySet="Restaurantes" />
+            <End Role="Reserva" EntitySet="Reserva" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reserva__idUsuar__31EC6D26" Association="Self.FK__Reserva__idUsuar__31EC6D26">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Reserva" EntitySet="Reserva" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Restauran__idCat__2A4B4B5E" Association="Self.FK__Restauran__idCat__2A4B4B5E">
+            <End Role="Categorias" EntitySet="Categorias" />
+            <End Role="Restaurantes" EntitySet="Restaurantes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Restauran__idDis__2B3F6F97" Association="Self.FK__Restauran__idDis__2B3F6F97">
+            <End Role="Distrito" EntitySet="Distrito" />
+            <End Role="Restaurantes" EntitySet="Restaurantes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="reservaRestauranteModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Categorias">
+          <Key>
+            <PropertyRef Name="idCategoria" />
+          </Key>
+          <Property Name="idCategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nomCategoria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Restaurantes" Relationship="Self.FK__Restauran__idCat__2A4B4B5E" FromRole="Categorias" ToRole="Restaurantes" />
+        </EntityType>
+        <EntityType Name="Distrito">
+          <Key>
+            <PropertyRef Name="idDistrito" />
+          </Key>
+          <Property Name="idDistrito" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nomDistrito" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Restaurantes" Relationship="Self.FK__Restauran__idDis__2B3F6F97" FromRole="Distrito" ToRole="Restaurantes" />
+        </EntityType>
+        <EntityType Name="Problema">
+          <Key>
+            <PropertyRef Name="idProblema" />
+          </Key>
+          <Property Name="idProblema" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tituloProblema" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Reclamo" Relationship="Self.FK__Reclamo__idProbl__30C33EC3" FromRole="Problema" ToRole="Reclamo" />
+        </EntityType>
+        <EntityType Name="Reclamo">
+          <Key>
+            <PropertyRef Name="idReclamo" />
+          </Key>
+          <Property Name="idReclamo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idProblema" Type="Int32" Nullable="false" />
+          <Property Name="idUsuario" Type="Int32" Nullable="false" />
+          <Property Name="idReserva" Type="Int32" Nullable="false" />
+          <Property Name="contenidoReclamo" Type="String" MaxLength="280" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecRegistroReclamo" Type="DateTime" Precision="3" />
+          <Property Name="estadoReclamo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Problema" Relationship="Self.FK__Reclamo__idProbl__30C33EC3" FromRole="Reclamo" ToRole="Problema" />
+          <NavigationProperty Name="Reserva" Relationship="Self.FK__Reclamo__idReser__32AB8735" FromRole="Reclamo" ToRole="Reserva" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK__Reclamo__idUsuar__31B762FC" FromRole="Reclamo" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Reseña">
+          <Key>
+            <PropertyRef Name="idReseña" />
+          </Key>
+          <Property Name="idReseña" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idUsuario" Type="Int32" Nullable="false" />
+          <Property Name="idRestaurante" Type="Int32" Nullable="false" />
+          <Property Name="tituloReseña" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contenidoReseña" Type="String" MaxLength="280" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecRegistroReseña" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Restaurantes" Relationship="Self.FK__Reseña__idRestau__2F10007B" FromRole="Reseña" ToRole="Restaurantes" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK__Reseña__idUsuari__2E1BDC42" FromRole="Reseña" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Reserva">
+          <Key>
+            <PropertyRef Name="idReserva" />
+          </Key>
+          <Property Name="idReserva" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idUsuario" Type="Int32" Nullable="false" />
+          <Property Name="idRestaurante" Type="Int32" Nullable="false" />
+          <Property Name="fechaReserva" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="cantPersonas" Type="Int32" Nullable="false" />
+          <Property Name="estadoReserva" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Reclamo" Relationship="Self.FK__Reclamo__idReser__32AB8735" FromRole="Reserva" ToRole="Reclamo" />
+          <NavigationProperty Name="Restaurantes" Relationship="Self.FK__Reserva__idResta__32E0915F" FromRole="Reserva" ToRole="Restaurantes" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK__Reserva__idUsuar__31EC6D26" FromRole="Reserva" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Restaurantes">
+          <Key>
+            <PropertyRef Name="idRestaurante" />
+          </Key>
+          <Property Name="idRestaurante" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idCategoria" Type="Int32" Nullable="false" />
+          <Property Name="idDistrito" Type="Int32" Nullable="false" />
+          <Property Name="nomRestaurante" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="direcRestaurante" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="teleRestaurante" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="fecRegistroRestaurante" Type="DateTime" Precision="3" />
+          <Property Name="usuRegistroRestaurante" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fecUltModiRestaurante" Type="DateTime" Precision="3" />
+          <Property Name="usuUltModiRestaurante" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="estadoRestaurante" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Categorias" Relationship="Self.FK__Restauran__idCat__2A4B4B5E" FromRole="Restaurantes" ToRole="Categorias" />
+          <NavigationProperty Name="Distrito" Relationship="Self.FK__Restauran__idDis__2B3F6F97" FromRole="Restaurantes" ToRole="Distrito" />
+          <NavigationProperty Name="Reseña" Relationship="Self.FK__Reseña__idRestau__2F10007B" FromRole="Restaurantes" ToRole="Reseña" />
+          <NavigationProperty Name="Reserva" Relationship="Self.FK__Reserva__idResta__32E0915F" FromRole="Restaurantes" ToRole="Reserva" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="correoUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contraUsuario" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dniUsuario" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nomUsuario" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apeUsuario" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="teleUsuario" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="naciUsuario" Type="DateTime" Precision="0" />
+          <Property Name="nivelUsuario" Type="Int32" Nullable="false" />
+          <Property Name="fecRegistroUsurio" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Reclamo" Relationship="Self.FK__Reclamo__idUsuar__31B762FC" FromRole="Usuario" ToRole="Reclamo" />
+          <NavigationProperty Name="Reseña" Relationship="Self.FK__Reseña__idUsuari__2E1BDC42" FromRole="Usuario" ToRole="Reseña" />
+          <NavigationProperty Name="Reserva" Relationship="Self.FK__Reserva__idUsuar__31EC6D26" FromRole="Usuario" ToRole="Reserva" />
+        </EntityType>
+        <EntityType Name="vListadoReservas">
+          <Key>
+            <PropertyRef Name="idReserva" />
+            <PropertyRef Name="fechaReserva" />
+            <PropertyRef Name="cantPersonas" />
+            <PropertyRef Name="idRestaurante" />
+            <PropertyRef Name="nomRestaurante" />
+            <PropertyRef Name="idUsuario" />
+            <PropertyRef Name="direcRestaurante" />
+            <PropertyRef Name="idDistrito" />
+            <PropertyRef Name="nomDistrito" />
+          </Key>
+          <Property Name="idReserva" Type="Int32" Nullable="false" />
+          <Property Name="fechaReserva" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="cantPersonas" Type="Int32" Nullable="false" />
+          <Property Name="idRestaurante" Type="Int32" Nullable="false" />
+          <Property Name="nomRestaurante" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idUsuario" Type="Int32" Nullable="false" />
+          <Property Name="direcRestaurante" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idDistrito" Type="Int32" Nullable="false" />
+          <Property Name="nomDistrito" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Estado" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="vListadoRestaurantes">
+          <Key>
+            <PropertyRef Name="idRestaurante" />
+            <PropertyRef Name="idCategoria" />
+            <PropertyRef Name="idDistrito" />
+            <PropertyRef Name="nomRestaurante" />
+            <PropertyRef Name="direcRestaurante" />
+            <PropertyRef Name="estadoRestaurante" />
+            <PropertyRef Name="nomDistrito" />
+            <PropertyRef Name="nomCategoria" />
+          </Key>
+          <Property Name="idRestaurante" Type="Int32" Nullable="false" />
+          <Property Name="idCategoria" Type="Int32" Nullable="false" />
+          <Property Name="idDistrito" Type="Int32" Nullable="false" />
+          <Property Name="nomRestaurante" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="direcRestaurante" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="teleRestaurante" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="fecRegistroRestaurante" Type="DateTime" Precision="3" />
+          <Property Name="usuRegistroRestaurante" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fecUltModiRestaurante" Type="DateTime" Precision="3" />
+          <Property Name="usuUltModiRestaurante" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="estadoRestaurante" Type="Int32" Nullable="false" />
+          <Property Name="nomDistrito" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nomCategoria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Estado" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK__Restauran__idCat__2A4B4B5E">
+          <End Role="Categorias" Type="Self.Categorias" Multiplicity="1" />
+          <End Role="Restaurantes" Type="Self.Restaurantes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categorias">
+              <PropertyRef Name="idCategoria" />
+            </Principal>
+            <Dependent Role="Restaurantes">
+              <PropertyRef Name="idCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Restauran__idDis__2B3F6F97">
+          <End Role="Distrito" Type="Self.Distrito" Multiplicity="1" />
+          <End Role="Restaurantes" Type="Self.Restaurantes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Distrito">
+              <PropertyRef Name="idDistrito" />
+            </Principal>
+            <Dependent Role="Restaurantes">
+              <PropertyRef Name="idDistrito" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reclamo__idProbl__30C33EC3">
+          <End Role="Problema" Type="Self.Problema" Multiplicity="1" />
+          <End Role="Reclamo" Type="Self.Reclamo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Problema">
+              <PropertyRef Name="idProblema" />
+            </Principal>
+            <Dependent Role="Reclamo">
+              <PropertyRef Name="idProblema" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reclamo__idReser__32AB8735">
+          <End Role="Reserva" Type="Self.Reserva" Multiplicity="1" />
+          <End Role="Reclamo" Type="Self.Reclamo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reserva">
+              <PropertyRef Name="idReserva" />
+            </Principal>
+            <Dependent Role="Reclamo">
+              <PropertyRef Name="idReserva" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reclamo__idUsuar__31B762FC">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Reclamo" Type="Self.Reclamo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Reclamo">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reseña__idRestau__2F10007B">
+          <End Role="Restaurantes" Type="Self.Restaurantes" Multiplicity="1" />
+          <End Role="Reseña" Type="Self.Reseña" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurantes">
+              <PropertyRef Name="idRestaurante" />
+            </Principal>
+            <Dependent Role="Reseña">
+              <PropertyRef Name="idRestaurante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reseña__idUsuari__2E1BDC42">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Reseña" Type="Self.Reseña" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Reseña">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reserva__idResta__32E0915F">
+          <End Role="Restaurantes" Type="Self.Restaurantes" Multiplicity="1" />
+          <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurantes">
+              <PropertyRef Name="idRestaurante" />
+            </Principal>
+            <Dependent Role="Reserva">
+              <PropertyRef Name="idRestaurante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reserva__idUsuar__31EC6D26">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Reserva">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="reservaRestauranteEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categorias" EntityType="Self.Categorias" />
+          <EntitySet Name="Distrito" EntityType="Self.Distrito" />
+          <EntitySet Name="Problema" EntityType="Self.Problema" />
+          <EntitySet Name="Reclamo" EntityType="Self.Reclamo" />
+          <EntitySet Name="Reseña" EntityType="Self.Reseña" />
+          <EntitySet Name="Reserva" EntityType="Self.Reserva" />
+          <EntitySet Name="Restaurantes" EntityType="Self.Restaurantes" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <EntitySet Name="vListadoReservas" EntityType="Self.vListadoReservas" />
+          <EntitySet Name="vListadoRestaurantes" EntityType="Self.vListadoRestaurantes" />
+          <AssociationSet Name="FK__Restauran__idCat__2A4B4B5E" Association="Self.FK__Restauran__idCat__2A4B4B5E">
+            <End Role="Categorias" EntitySet="Categorias" />
+            <End Role="Restaurantes" EntitySet="Restaurantes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Restauran__idDis__2B3F6F97" Association="Self.FK__Restauran__idDis__2B3F6F97">
+            <End Role="Distrito" EntitySet="Distrito" />
+            <End Role="Restaurantes" EntitySet="Restaurantes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reclamo__idProbl__30C33EC3" Association="Self.FK__Reclamo__idProbl__30C33EC3">
+            <End Role="Problema" EntitySet="Problema" />
+            <End Role="Reclamo" EntitySet="Reclamo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reclamo__idReser__32AB8735" Association="Self.FK__Reclamo__idReser__32AB8735">
+            <End Role="Reserva" EntitySet="Reserva" />
+            <End Role="Reclamo" EntitySet="Reclamo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reclamo__idUsuar__31B762FC" Association="Self.FK__Reclamo__idUsuar__31B762FC">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Reclamo" EntitySet="Reclamo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reseña__idRestau__2F10007B" Association="Self.FK__Reseña__idRestau__2F10007B">
+            <End Role="Restaurantes" EntitySet="Restaurantes" />
+            <End Role="Reseña" EntitySet="Reseña" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reseña__idUsuari__2E1BDC42" Association="Self.FK__Reseña__idUsuari__2E1BDC42">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Reseña" EntitySet="Reseña" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reserva__idResta__32E0915F" Association="Self.FK__Reserva__idResta__32E0915F">
+            <End Role="Restaurantes" EntitySet="Restaurantes" />
+            <End Role="Reserva" EntitySet="Reserva" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reserva__idUsuar__31EC6D26" Association="Self.FK__Reserva__idUsuar__31EC6D26">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Reserva" EntitySet="Reserva" />
+          </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(reservaRestauranteModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(reservaRestauranteModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="usp_ActualizarReseña">
+            <Parameter Name="idRese" Mode="In" Type="Int32" />
+            <Parameter Name="tituRese" Mode="In" Type="String" />
+            <Parameter Name="contRese" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ActualizarReserva">
+          <Parameter Name="idUsua" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ActualizarReservaRestaurante">
+          <Parameter Name="idResta" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ActualizarRestaurante">
+            <Parameter Name="idResta" Mode="In" Type="Int32" />
+            <Parameter Name="nomResta" Mode="In" Type="String" />
+            <Parameter Name="direcResta" Mode="In" Type="String" />
+            <Parameter Name="teleResta" Mode="In" Type="String" />
+            <Parameter Name="usuUltModiResta" Mode="In" Type="String" />
+            <Parameter Name="estadoResta" Mode="In" Type="Int32" />
+            <Parameter Name="cateResta" Mode="In" Type="Int32" />
+            <Parameter Name="distriResta" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ActualizarUsuario">
+            <Parameter Name="correoUsu" Mode="In" Type="String" />
+            <Parameter Name="nomUsu" Mode="In" Type="String" />
+            <Parameter Name="apeUsu" Mode="In" Type="String" />
+            <Parameter Name="dniUsu" Mode="In" Type="String" />
+            <Parameter Name="teleUsu" Mode="In" Type="String" />
+            <Parameter Name="idUsu" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_AñadirReseña">
+            <Parameter Name="idUsua" Mode="In" Type="Int32" />
+            <Parameter Name="idResta" Mode="In" Type="Int32" />
+            <Parameter Name="tituRese" Mode="In" Type="String" />
+            <Parameter Name="contRese" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_CancelarReserva">
+            <Parameter Name="idUsua" Mode="In" Type="Int32" />
+            <Parameter Name="idReser" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_Categorias" ReturnType="Collection(reservaRestauranteModel.usp_Categorias_Result)" />
+          <FunctionImport Name="usp_ConsultarDistrito" ReturnType="Collection(String)">
+          <Parameter Name="idDistri" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ConsultarReseña" ReturnType="Collection(reservaRestauranteModel.usp_ConsultarReseña_Result)">
+          <Parameter Name="idRese" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ConsultarRestaurante" ReturnType="Collection(reservaRestauranteModel.usp_ConsultarRestaurante_Result)">
+          <Parameter Name="idResta" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ConsultarRestauranteWeb" ReturnType="Collection(reservaRestauranteModel.usp_ConsultarRestauranteWeb_Result)">
+          <Parameter Name="idResta" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ConsultarUsuario" ReturnType="Collection(reservaRestauranteModel.usp_ConsultarUsuario_Result)">
+          <Parameter Name="correoUsu" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_Distritos" ReturnType="Collection(reservaRestauranteModel.usp_Distritos_Result)" />
+          <FunctionImport Name="usp_EliminarReseña">
+          <Parameter Name="idRese" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_InsertarReserva">
+            <Parameter Name="idUsua" Mode="In" Type="Int32" />
+            <Parameter Name="idResta" Mode="In" Type="Int32" />
+            <Parameter Name="fechaReser" Mode="In" Type="DateTime" />
+            <Parameter Name="cantPerso" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_InsertarRestaurante">
+            <Parameter Name="cateResta" Mode="In" Type="Int32" />
+            <Parameter Name="distriResta" Mode="In" Type="Int32" />
+            <Parameter Name="nomResta" Mode="In" Type="String" />
+            <Parameter Name="direcResta" Mode="In" Type="String" />
+            <Parameter Name="teleResta" Mode="In" Type="String" />
+            <Parameter Name="usuRegisResta" Mode="In" Type="String" />
+            <Parameter Name="estadoResta" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ListarMisReseñas" ReturnType="Collection(reservaRestauranteModel.usp_ListarMisReseñas_Result)">
+          <Parameter Name="idUsua" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ListarReseñas" ReturnType="Collection(reservaRestauranteModel.usp_ListarReseñas_Result)">
+          <Parameter Name="idResta" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ListarReservas" ReturnType="Collection(reservaRestauranteModel.usp_ListarReservas_Result)">
+          <Parameter Name="idUsua" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ListarReservasRestaurante" ReturnType="Collection(reservaRestauranteModel.usp_ListarReservasRestaurante_Result)">
+          <Parameter Name="idResta" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ListarReservasRestaurante_Paginacion" ReturnType="Collection(reservaRestauranteModel.usp_ListarReservasRestaurante_Paginacion_Result)">
+            <Parameter Name="idResta" Mode="In" Type="Int32" />
+            <Parameter Name="NumPag" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ListarRestaurante" ReturnType="Collection(reservaRestauranteModel.usp_ListarRestaurante_Result)" />
+          <FunctionImport Name="usp_ListarRestauranteActivos" ReturnType="Collection(reservaRestauranteModel.usp_ListarRestauranteActivos_Result)" />
+          <FunctionImport Name="usp_NumPag_ListarReservasRestaurante_Paginacion">
+            <Parameter Name="idResta" Mode="In" Type="Int32" />
+            <Parameter Name="NUMREG" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ListarRestaurantePorDistrito" ReturnType="Collection(reservaRestauranteModel.usp_ListarRestaurantePorDistrito_Result)">
+          <Parameter Name="idDistri" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ListarRestaurantePorCategoria" ReturnType="Collection(reservaRestauranteModel.usp_ListarRestaurantePorCategoria_Result)">
+          <Parameter Name="idCate" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ListarRestaurantePorCategoriaDistrito" ReturnType="Collection(reservaRestauranteModel.usp_ListarRestaurantePorCategoriaDistrito_Result)">
+            <Parameter Name="idCate" Mode="In" Type="Int32" />
+            <Parameter Name="idDistri" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ListarReseñasTodas" ReturnType="Collection(reservaRestauranteModel.usp_ListarReseñasTodas_Result)" />
+          <FunctionImport Name="usp_ListarTodasReseñas" ReturnType="Collection(reservaRestauranteModel.usp_ListarTodasReseñas_Result)" />
+          <FunctionImport Name="usp_ListarReservasPorDia" ReturnType="Collection(reservaRestauranteModel.usp_ListarReservasPorDia_Result)">
+          <Parameter Name="fec" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ListarReservasPorDiaRestaurante" ReturnType="Collection(reservaRestauranteModel.usp_ListarReservasPorDiaRestaurante_Result)">
+            <Parameter Name="fec" Mode="In" Type="DateTime" />
+            <Parameter Name="idResta" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ListarReservasRestaurante1" ReturnType="Collection(reservaRestauranteModel.usp_ListarReservasRestaurante1_Result)">
+          <Parameter Name="idResta" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ListarReservasRestaurantes" ReturnType="Collection(reservaRestauranteModel.usp_ListarReservasRestaurantes_Result)">
+          <Parameter Name="idResta" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ListarReseña" ReturnType="Collection(reservaRestauranteModel.usp_ListarReseña_Result)">
+          <Parameter Name="idResta" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ListarTopUsuarioReservasPorRestaurante" ReturnType="Collection(reservaRestauranteModel.usp_ListarTopUsuarioReservasPorRestaurante_Result)">
+          <Parameter Name="idResta" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_NumPersonasDiaReservas" ReturnType="Collection(Int32)">
+            <Parameter Name="fec" Mode="In" Type="DateTime" />
+            <Parameter Name="idResta" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_NumPersonasDiaReservasRestaurante" ReturnType="Collection(Int32)">
+            <Parameter Name="fec" Mode="In" Type="DateTime" />
+            <Parameter Name="idResta" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="usp_Categorias_Result">
+          <Property Type="Int32" Name="idCategoria" Nullable="false" />
+          <Property Type="String" Name="nomCategoria" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="usp_ConsultarReseña_Result">
+          <Property Type="String" Name="tituloReseña" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="contenidoReseña" Nullable="false" MaxLength="280" />
+        </ComplexType>
+        <ComplexType Name="usp_ConsultarRestaurante_Result">
+          <Property Type="Int32" Name="idRestaurante" Nullable="false" />
+          <Property Type="Int32" Name="idCategoria" Nullable="false" />
+          <Property Type="Int32" Name="idDistrito" Nullable="false" />
+          <Property Type="String" Name="nomRestaurante" Nullable="false" MaxLength="80" />
+          <Property Type="String" Name="direcRestaurante" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="teleRestaurante" Nullable="true" MaxLength="15" />
+          <Property Type="DateTime" Name="fecRegistroRestaurante" Nullable="true" Precision="23" />
+          <Property Type="String" Name="usuRegistroRestaurante" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="fecUltModiRestaurante" Nullable="true" Precision="23" />
+          <Property Type="String" Name="usuUltModiRestaurante" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="estadoRestaurante" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="usp_ConsultarRestauranteWeb_Result">
+          <Property Type="String" Name="nomCategoria" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="nomRestaurante" Nullable="false" MaxLength="80" />
+          <Property Type="String" Name="Estado" Nullable="true" MaxLength="8" />
+          <Property Type="String" Name="teleRestaurante" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="direcRestaurante" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="nomDistrito" Nullable="false" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="usp_ConsultarUsuario_Result">
+          <Property Type="Int32" Name="idUsuario" Nullable="false" />
+          <Property Type="String" Name="correoUsuario" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="contraUsuario" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="dniUsuario" Nullable="false" MaxLength="8" />
+          <Property Type="String" Name="nomUsuario" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="apeUsuario" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="teleUsuario" Nullable="false" MaxLength="15" />
+          <Property Type="DateTime" Name="naciUsuario" Nullable="true" />
+          <Property Type="Int32" Name="nivelUsuario" Nullable="false" />
+          <Property Type="DateTime" Name="fecRegistroUsurio" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="usp_Distritos_Result">
+          <Property Type="Int32" Name="idDistrito" Nullable="false" />
+          <Property Type="String" Name="nomDistrito" Nullable="false" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="usp_ListarMisReseñas_Result">
+          <Property Type="Int32" Name="idReseña" Nullable="false" />
+          <Property Type="Int32" Name="idUsuario" Nullable="false" />
+          <Property Type="Int32" Name="idRestaurante" Nullable="false" />
+          <Property Type="String" Name="tituloReseña" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="contenidoReseña" Nullable="false" MaxLength="280" />
+          <Property Type="DateTime" Name="Fecha" Nullable="true" />
+          <Property Type="String" Name="nomRestaurante" Nullable="false" MaxLength="80" />
+        </ComplexType>
+        <ComplexType Name="usp_ListarReseñas_Result">
+          <Property Type="Int32" Name="idReseña" Nullable="false" />
+          <Property Type="Int32" Name="idUsuario" Nullable="false" />
+          <Property Type="Int32" Name="idRestaurante" Nullable="false" />
+          <Property Type="String" Name="tituloReseña" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="contenidoReseña" Nullable="false" MaxLength="280" />
+          <Property Type="DateTime" Name="Fecha" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="usp_ListarReservas_Result">
+          <Property Type="Int32" Name="idReserva" Nullable="false" />
+          <Property Type="DateTime" Name="fechaReserva" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="cantPersonas" Nullable="false" />
+          <Property Type="Int32" Name="idRestaurante" Nullable="false" />
+          <Property Type="String" Name="nomRestaurante" Nullable="false" MaxLength="80" />
+          <Property Type="String" Name="direcRestaurante" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="nomDistrito" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Estado" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="usp_ListarReservasRestaurante_Result">
+          <Property Type="Int32" Name="idReserva" Nullable="false" />
+          <Property Type="DateTime" Name="fechaReserva" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="cantPersonas" Nullable="false" />
+          <Property Type="Int32" Name="idRestaurante" Nullable="false" />
+          <Property Type="String" Name="nomRestaurante" Nullable="false" MaxLength="80" />
+          <Property Type="String" Name="direcRestaurante" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="nomDistrito" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Estado" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="usp_ListarReservasRestaurante_Paginacion_Result">
+          <Property Type="Int32" Name="idReserva" Nullable="false" />
+          <Property Type="DateTime" Name="fechaReserva" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="cantPersonas" Nullable="false" />
+          <Property Type="Int32" Name="idRestaurante" Nullable="false" />
+          <Property Type="String" Name="nomRestaurante" Nullable="false" MaxLength="80" />
+          <Property Type="String" Name="direcRestaurante" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="nomDistrito" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Estado" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="usp_ListarRestaurante_Result">
+          <Property Type="Int32" Name="idRestaurante" Nullable="false" />
+          <Property Type="Int32" Name="idCategoria" Nullable="false" />
+          <Property Type="Int32" Name="idDistrito" Nullable="false" />
+          <Property Type="String" Name="nomRestaurante" Nullable="false" MaxLength="80" />
+          <Property Type="String" Name="direcRestaurante" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="teleRestaurante" Nullable="true" MaxLength="15" />
+          <Property Type="DateTime" Name="fecRegistroRestaurante" Nullable="true" Precision="23" />
+          <Property Type="String" Name="usuRegistroRestaurante" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="fecUltModiRestaurante" Nullable="true" Precision="23" />
+          <Property Type="String" Name="usuUltModiRestaurante" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="estadoRestaurante" Nullable="false" />
+          <Property Type="String" Name="nomDistrito" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="nomCategoria" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Estado" Nullable="true" MaxLength="8" />
+        </ComplexType>
+        <ComplexType Name="usp_ListarRestauranteActivos_Result">
+          <Property Type="Int32" Name="idRestaurante" Nullable="false" />
+          <Property Type="Int32" Name="idCategoria" Nullable="false" />
+          <Property Type="Int32" Name="idDistrito" Nullable="false" />
+          <Property Type="String" Name="nomRestaurante" Nullable="false" MaxLength="80" />
+          <Property Type="String" Name="direcRestaurante" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="teleRestaurante" Nullable="true" MaxLength="15" />
+          <Property Type="Int32" Name="estadoRestaurante" Nullable="false" />
+          <Property Type="String" Name="nomCategoria" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="nomDistrito" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Estado" Nullable="true" MaxLength="8" />
+        </ComplexType>
+        <ComplexType Name="usp_ListarRestaurantePorDistrito_Result">
+          <Property Type="Int32" Name="idRestaurante" Nullable="false" />
+          <Property Type="Int32" Name="idCategoria" Nullable="false" />
+          <Property Type="Int32" Name="idDistrito" Nullable="false" />
+          <Property Type="String" Name="nomRestaurante" Nullable="false" MaxLength="80" />
+          <Property Type="String" Name="direcRestaurante" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="teleRestaurante" Nullable="true" MaxLength="15" />
+          <Property Type="Int32" Name="estadoRestaurante" Nullable="false" />
+          <Property Type="String" Name="nomCategoria" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="nomDistrito" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Estado" Nullable="true" MaxLength="8" />
+        </ComplexType>
+        <ComplexType Name="usp_ListarRestaurantePorCategoria_Result">
+          <Property Type="Int32" Name="idRestaurante" Nullable="false" />
+          <Property Type="Int32" Name="idCategoria" Nullable="false" />
+          <Property Type="Int32" Name="idDistrito" Nullable="false" />
+          <Property Type="String" Name="nomRestaurante" Nullable="false" MaxLength="80" />
+          <Property Type="String" Name="direcRestaurante" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="teleRestaurante" Nullable="true" MaxLength="15" />
+          <Property Type="Int32" Name="estadoRestaurante" Nullable="false" />
+          <Property Type="String" Name="nomCategoria" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="nomDistrito" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Estado" Nullable="true" MaxLength="8" />
+        </ComplexType>
+        <ComplexType Name="usp_ListarRestaurantePorCategoriaDistrito_Result">
+          <Property Type="Int32" Name="idRestaurante" Nullable="false" />
+          <Property Type="Int32" Name="idCategoria" Nullable="false" />
+          <Property Type="Int32" Name="idDistrito" Nullable="false" />
+          <Property Type="String" Name="nomRestaurante" Nullable="false" MaxLength="80" />
+          <Property Type="String" Name="direcRestaurante" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="teleRestaurante" Nullable="true" MaxLength="15" />
+          <Property Type="Int32" Name="estadoRestaurante" Nullable="false" />
+          <Property Type="String" Name="nomCategoria" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="nomDistrito" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Estado" Nullable="true" MaxLength="8" />
+        </ComplexType>
+        <ComplexType Name="usp_ListarReseñasTodas_Result">
+          <Property Type="Int32" Name="idReseña" Nullable="false" />
+          <Property Type="Int32" Name="idUsuario" Nullable="false" />
+          <Property Type="Int32" Name="idRestaurante" Nullable="false" />
+          <Property Type="String" Name="tituloReseña" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="contenidoReseña" Nullable="false" MaxLength="280" />
+          <Property Type="DateTime" Name="Fecha" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="usp_ListarTodasReseñas_Result">
+          <Property Type="Int32" Name="idReseña" Nullable="false" />
+          <Property Type="Int32" Name="idUsuario" Nullable="false" />
+          <Property Type="Int32" Name="idRestaurante" Nullable="false" />
+          <Property Type="String" Name="tituloReseña" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="contenidoReseña" Nullable="false" MaxLength="280" />
+          <Property Type="DateTime" Name="Fecha" Nullable="true" />
+          <Property Type="String" Name="nomRestaurante" Nullable="false" MaxLength="80" />
+        </ComplexType>
+        <ComplexType Name="usp_ListarReservasPorDia_Result">
+          <Property Type="Int32" Name="idReserva" Nullable="false" />
+          <Property Type="DateTime" Name="fechaReserva" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="cantPersonas" Nullable="false" />
+          <Property Type="Int32" Name="idRestaurante" Nullable="false" />
+          <Property Type="String" Name="nomRestaurante" Nullable="false" MaxLength="80" />
+          <Property Type="String" Name="direcRestaurante" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="nomDistrito" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Estado" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="usp_ListarReservasPorDiaRestaurante_Result">
+          <Property Type="Int32" Name="idReserva" Nullable="false" />
+          <Property Type="DateTime" Name="fechaReserva" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="cantPersonas" Nullable="false" />
+          <Property Type="Int32" Name="idRestaurante" Nullable="false" />
+          <Property Type="String" Name="nomRestaurante" Nullable="false" MaxLength="80" />
+          <Property Type="String" Name="direcRestaurante" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="nomDistrito" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Estado" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="usp_ListarReservasRestaurante1_Result">
+          <Property Type="Int32" Name="idReserva" Nullable="false" />
+          <Property Type="DateTime" Name="fechaReserva" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="cantPersonas" Nullable="false" />
+          <Property Type="Int32" Name="idRestaurante" Nullable="false" />
+          <Property Type="String" Name="nomRestaurante" Nullable="false" MaxLength="80" />
+          <Property Type="String" Name="direcRestaurante" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="nomDistrito" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Estado" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="dniUsuario" Nullable="false" MaxLength="8" />
+          <Property Type="String" Name="correoUsuario" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="nomUsuario" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="apeUsuario" Nullable="false" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="usp_ListarReservasRestaurantes_Result">
+          <Property Type="Int32" Name="idReserva" Nullable="false" />
+          <Property Type="DateTime" Name="fechaReserva" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="cantPersonas" Nullable="false" />
+          <Property Type="Int32" Name="idRestaurante" Nullable="false" />
+          <Property Type="String" Name="nomRestaurante" Nullable="false" MaxLength="80" />
+          <Property Type="String" Name="direcRestaurante" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="nomDistrito" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Estado" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="dniUsuario" Nullable="false" MaxLength="8" />
+          <Property Type="String" Name="correoUsuario" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="nomUsuario" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="apeUsuario" Nullable="false" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="usp_ListarReseña_Result">
+          <Property Type="Int32" Name="idReseña" Nullable="false" />
+          <Property Type="Int32" Name="idUsuario" Nullable="false" />
+          <Property Type="Int32" Name="idRestaurante" Nullable="false" />
+          <Property Type="String" Name="tituloReseña" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="contenidoReseña" Nullable="false" MaxLength="280" />
+          <Property Type="DateTime" Name="Fecha" Nullable="true" />
+          <Property Type="String" Name="nomRestaurante" Nullable="false" MaxLength="80" />
+        </ComplexType>
+        <ComplexType Name="usp_ListarTopUsuarioReservasPorRestaurante_Result">
+          <Property Type="Int32" Name="Cant" Nullable="true" />
+          <Property Type="String" Name="nomUsuario" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="apeUsuario" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="nomRestaurante" Nullable="false" MaxLength="80" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="reservaRestauranteModelStoreContainer" CdmEntityContainer="reservaRestauranteEntities">
+          <EntitySetMapping Name="Categorias">
+            <EntityTypeMapping TypeName="reservaRestauranteModel.Categorias">
+              <MappingFragment StoreEntitySet="Categorias">
+                <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+                <ScalarProperty Name="nomCategoria" ColumnName="nomCategoria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Distrito">
+            <EntityTypeMapping TypeName="reservaRestauranteModel.Distrito">
+              <MappingFragment StoreEntitySet="Distrito">
+                <ScalarProperty Name="idDistrito" ColumnName="idDistrito" />
+                <ScalarProperty Name="nomDistrito" ColumnName="nomDistrito" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Problema">
+            <EntityTypeMapping TypeName="reservaRestauranteModel.Problema">
+              <MappingFragment StoreEntitySet="Problema">
+                <ScalarProperty Name="idProblema" ColumnName="idProblema" />
+                <ScalarProperty Name="tituloProblema" ColumnName="tituloProblema" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reclamo">
+            <EntityTypeMapping TypeName="reservaRestauranteModel.Reclamo">
+              <MappingFragment StoreEntitySet="Reclamo">
+                <ScalarProperty Name="idReclamo" ColumnName="idReclamo" />
+                <ScalarProperty Name="idProblema" ColumnName="idProblema" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="idReserva" ColumnName="idReserva" />
+                <ScalarProperty Name="contenidoReclamo" ColumnName="contenidoReclamo" />
+                <ScalarProperty Name="fecRegistroReclamo" ColumnName="fecRegistroReclamo" />
+                <ScalarProperty Name="estadoReclamo" ColumnName="estadoReclamo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reseña">
+            <EntityTypeMapping TypeName="reservaRestauranteModel.Reseña">
+              <MappingFragment StoreEntitySet="Reseña">
+                <ScalarProperty Name="idReseña" ColumnName="idReseña" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="idRestaurante" ColumnName="idRestaurante" />
+                <ScalarProperty Name="tituloReseña" ColumnName="tituloReseña" />
+                <ScalarProperty Name="contenidoReseña" ColumnName="contenidoReseña" />
+                <ScalarProperty Name="fecRegistroReseña" ColumnName="fecRegistroReseña" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reserva">
+            <EntityTypeMapping TypeName="reservaRestauranteModel.Reserva">
+              <MappingFragment StoreEntitySet="Reserva">
+                <ScalarProperty Name="idReserva" ColumnName="idReserva" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="idRestaurante" ColumnName="idRestaurante" />
+                <ScalarProperty Name="fechaReserva" ColumnName="fechaReserva" />
+                <ScalarProperty Name="cantPersonas" ColumnName="cantPersonas" />
+                <ScalarProperty Name="estadoReserva" ColumnName="estadoReserva" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Restaurantes">
+            <EntityTypeMapping TypeName="reservaRestauranteModel.Restaurantes">
+              <MappingFragment StoreEntitySet="Restaurantes">
+                <ScalarProperty Name="idRestaurante" ColumnName="idRestaurante" />
+                <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+                <ScalarProperty Name="idDistrito" ColumnName="idDistrito" />
+                <ScalarProperty Name="nomRestaurante" ColumnName="nomRestaurante" />
+                <ScalarProperty Name="direcRestaurante" ColumnName="direcRestaurante" />
+                <ScalarProperty Name="teleRestaurante" ColumnName="teleRestaurante" />
+                <ScalarProperty Name="fecRegistroRestaurante" ColumnName="fecRegistroRestaurante" />
+                <ScalarProperty Name="usuRegistroRestaurante" ColumnName="usuRegistroRestaurante" />
+                <ScalarProperty Name="fecUltModiRestaurante" ColumnName="fecUltModiRestaurante" />
+                <ScalarProperty Name="usuUltModiRestaurante" ColumnName="usuUltModiRestaurante" />
+                <ScalarProperty Name="estadoRestaurante" ColumnName="estadoRestaurante" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="reservaRestauranteModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="reservaRestauranteModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="correoUsuario" ColumnName="correoUsuario" />
+                <ScalarProperty Name="contraUsuario" ColumnName="contraUsuario" />
+                <ScalarProperty Name="dniUsuario" ColumnName="dniUsuario" />
+                <ScalarProperty Name="nomUsuario" ColumnName="nomUsuario" />
+                <ScalarProperty Name="apeUsuario" ColumnName="apeUsuario" />
+                <ScalarProperty Name="teleUsuario" ColumnName="teleUsuario" />
+                <ScalarProperty Name="naciUsuario" ColumnName="naciUsuario" />
+                <ScalarProperty Name="nivelUsuario" ColumnName="nivelUsuario" />
+                <ScalarProperty Name="fecRegistroUsurio" ColumnName="fecRegistroUsurio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vListadoReservas">
+            <EntityTypeMapping TypeName="reservaRestauranteModel.vListadoReservas">
+              <MappingFragment StoreEntitySet="vListadoReservas">
+                <ScalarProperty Name="idReserva" ColumnName="idReserva" />
+                <ScalarProperty Name="fechaReserva" ColumnName="fechaReserva" />
+                <ScalarProperty Name="cantPersonas" ColumnName="cantPersonas" />
+                <ScalarProperty Name="idRestaurante" ColumnName="idRestaurante" />
+                <ScalarProperty Name="nomRestaurante" ColumnName="nomRestaurante" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="direcRestaurante" ColumnName="direcRestaurante" />
+                <ScalarProperty Name="idDistrito" ColumnName="idDistrito" />
+                <ScalarProperty Name="nomDistrito" ColumnName="nomDistrito" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vListadoRestaurantes">
+            <EntityTypeMapping TypeName="reservaRestauranteModel.vListadoRestaurantes">
+              <MappingFragment StoreEntitySet="vListadoRestaurantes">
+                <ScalarProperty Name="idRestaurante" ColumnName="idRestaurante" />
+                <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+                <ScalarProperty Name="idDistrito" ColumnName="idDistrito" />
+                <ScalarProperty Name="nomRestaurante" ColumnName="nomRestaurante" />
+                <ScalarProperty Name="direcRestaurante" ColumnName="direcRestaurante" />
+                <ScalarProperty Name="teleRestaurante" ColumnName="teleRestaurante" />
+                <ScalarProperty Name="fecRegistroRestaurante" ColumnName="fecRegistroRestaurante" />
+                <ScalarProperty Name="usuRegistroRestaurante" ColumnName="usuRegistroRestaurante" />
+                <ScalarProperty Name="fecUltModiRestaurante" ColumnName="fecUltModiRestaurante" />
+                <ScalarProperty Name="usuUltModiRestaurante" ColumnName="usuUltModiRestaurante" />
+                <ScalarProperty Name="estadoRestaurante" ColumnName="estadoRestaurante" />
+                <ScalarProperty Name="nomDistrito" ColumnName="nomDistrito" />
+                <ScalarProperty Name="nomCategoria" ColumnName="nomCategoria" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="reservaRestauranteModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="reservaRestauranteModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="reservaRestauranteModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="reservaRestauranteModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="reservaRestauranteModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="reservaRestauranteModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="reservaRestauranteModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="reservaRestauranteModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="reservaRestauranteModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="usp_ActualizarReseña" FunctionName="reservaRestauranteModel.Store.usp_ActualizarReseña" />
+          <FunctionImportMapping FunctionImportName="usp_ActualizarReserva" FunctionName="reservaRestauranteModel.Store.usp_ActualizarReserva" />
+          <FunctionImportMapping FunctionImportName="usp_ActualizarReservaRestaurante" FunctionName="reservaRestauranteModel.Store.usp_ActualizarReservaRestaurante" />
+          <FunctionImportMapping FunctionImportName="usp_ActualizarRestaurante" FunctionName="reservaRestauranteModel.Store.usp_ActualizarRestaurante" />
+          <FunctionImportMapping FunctionImportName="usp_ActualizarUsuario" FunctionName="reservaRestauranteModel.Store.usp_ActualizarUsuario" />
+          <FunctionImportMapping FunctionImportName="usp_AñadirReseña" FunctionName="reservaRestauranteModel.Store.usp_AñadirReseña" />
+          <FunctionImportMapping FunctionImportName="usp_CancelarReserva" FunctionName="reservaRestauranteModel.Store.usp_CancelarReserva" />
+          <FunctionImportMapping FunctionImportName="usp_Categorias" FunctionName="reservaRestauranteModel.Store.usp_Categorias">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="reservaRestauranteModel.usp_Categorias_Result">
+                <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+                <ScalarProperty Name="nomCategoria" ColumnName="nomCategoria" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_ConsultarDistrito" FunctionName="reservaRestauranteModel.Store.usp_ConsultarDistrito" />
+          <FunctionImportMapping FunctionImportName="usp_ConsultarReseña" FunctionName="reservaRestauranteModel.Store.usp_ConsultarReseña">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="reservaRestauranteModel.usp_ConsultarReseña_Result">
+                <ScalarProperty Name="tituloReseña" ColumnName="tituloReseña" />
+                <ScalarProperty Name="contenidoReseña" ColumnName="contenidoReseña" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_ConsultarRestaurante" FunctionName="reservaRestauranteModel.Store.usp_ConsultarRestaurante">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="reservaRestauranteModel.usp_ConsultarRestaurante_Result">
+                <ScalarProperty Name="idRestaurante" ColumnName="idRestaurante" />
+                <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+                <ScalarProperty Name="idDistrito" ColumnName="idDistrito" />
+                <ScalarProperty Name="nomRestaurante" ColumnName="nomRestaurante" />
+                <ScalarProperty Name="direcRestaurante" ColumnName="direcRestaurante" />
+                <ScalarProperty Name="teleRestaurante" ColumnName="teleRestaurante" />
+                <ScalarProperty Name="fecRegistroRestaurante" ColumnName="fecRegistroRestaurante" />
+                <ScalarProperty Name="usuRegistroRestaurante" ColumnName="usuRegistroRestaurante" />
+                <ScalarProperty Name="fecUltModiRestaurante" ColumnName="fecUltModiRestaurante" />
+                <ScalarProperty Name="usuUltModiRestaurante" ColumnName="usuUltModiRestaurante" />
+                <ScalarProperty Name="estadoRestaurante" ColumnName="estadoRestaurante" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_ConsultarRestauranteWeb" FunctionName="reservaRestauranteModel.Store.usp_ConsultarRestauranteWeb">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="reservaRestauranteModel.usp_ConsultarRestauranteWeb_Result">
+                <ScalarProperty Name="nomCategoria" ColumnName="nomCategoria" />
+                <ScalarProperty Name="nomRestaurante" ColumnName="nomRestaurante" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="teleRestaurante" ColumnName="teleRestaurante" />
+                <ScalarProperty Name="direcRestaurante" ColumnName="direcRestaurante" />
+                <ScalarProperty Name="nomDistrito" ColumnName="nomDistrito" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_ConsultarUsuario" FunctionName="reservaRestauranteModel.Store.usp_ConsultarUsuario">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="reservaRestauranteModel.usp_ConsultarUsuario_Result">
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="correoUsuario" ColumnName="correoUsuario" />
+                <ScalarProperty Name="contraUsuario" ColumnName="contraUsuario" />
+                <ScalarProperty Name="dniUsuario" ColumnName="dniUsuario" />
+                <ScalarProperty Name="nomUsuario" ColumnName="nomUsuario" />
+                <ScalarProperty Name="apeUsuario" ColumnName="apeUsuario" />
+                <ScalarProperty Name="teleUsuario" ColumnName="teleUsuario" />
+                <ScalarProperty Name="naciUsuario" ColumnName="naciUsuario" />
+                <ScalarProperty Name="nivelUsuario" ColumnName="nivelUsuario" />
+                <ScalarProperty Name="fecRegistroUsurio" ColumnName="fecRegistroUsurio" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_Distritos" FunctionName="reservaRestauranteModel.Store.usp_Distritos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="reservaRestauranteModel.usp_Distritos_Result">
+                <ScalarProperty Name="idDistrito" ColumnName="idDistrito" />
+                <ScalarProperty Name="nomDistrito" ColumnName="nomDistrito" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_EliminarReseña" FunctionName="reservaRestauranteModel.Store.usp_EliminarReseña" />
+          <FunctionImportMapping FunctionImportName="usp_InsertarReserva" FunctionName="reservaRestauranteModel.Store.usp_InsertarReserva" />
+          <FunctionImportMapping FunctionImportName="usp_InsertarRestaurante" FunctionName="reservaRestauranteModel.Store.usp_InsertarRestaurante" />
+          <FunctionImportMapping FunctionImportName="usp_ListarMisReseñas" FunctionName="reservaRestauranteModel.Store.usp_ListarMisReseñas">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="reservaRestauranteModel.usp_ListarMisReseñas_Result">
+                <ScalarProperty Name="idReseña" ColumnName="idReseña" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="idRestaurante" ColumnName="idRestaurante" />
+                <ScalarProperty Name="tituloReseña" ColumnName="tituloReseña" />
+                <ScalarProperty Name="contenidoReseña" ColumnName="contenidoReseña" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="nomRestaurante" ColumnName="nomRestaurante" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_ListarReseñas" FunctionName="reservaRestauranteModel.Store.usp_ListarReseñas">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="reservaRestauranteModel.usp_ListarReseñas_Result">
+                <ScalarProperty Name="idReseña" ColumnName="idReseña" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="idRestaurante" ColumnName="idRestaurante" />
+                <ScalarProperty Name="tituloReseña" ColumnName="tituloReseña" />
+                <ScalarProperty Name="contenidoReseña" ColumnName="contenidoReseña" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_ListarReservas" FunctionName="reservaRestauranteModel.Store.usp_ListarReservas">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="reservaRestauranteModel.usp_ListarReservas_Result">
+                <ScalarProperty Name="idReserva" ColumnName="idReserva" />
+                <ScalarProperty Name="fechaReserva" ColumnName="fechaReserva" />
+                <ScalarProperty Name="cantPersonas" ColumnName="cantPersonas" />
+                <ScalarProperty Name="idRestaurante" ColumnName="idRestaurante" />
+                <ScalarProperty Name="nomRestaurante" ColumnName="nomRestaurante" />
+                <ScalarProperty Name="direcRestaurante" ColumnName="direcRestaurante" />
+                <ScalarProperty Name="nomDistrito" ColumnName="nomDistrito" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_ListarReservasRestaurante_Paginacion" FunctionName="reservaRestauranteModel.Store.usp_ListarReservasRestaurante_Paginacion">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="reservaRestauranteModel.usp_ListarReservasRestaurante_Paginacion_Result">
+                <ScalarProperty Name="idReserva" ColumnName="idReserva" />
+                <ScalarProperty Name="fechaReserva" ColumnName="fechaReserva" />
+                <ScalarProperty Name="cantPersonas" ColumnName="cantPersonas" />
+                <ScalarProperty Name="idRestaurante" ColumnName="idRestaurante" />
+                <ScalarProperty Name="nomRestaurante" ColumnName="nomRestaurante" />
+                <ScalarProperty Name="direcRestaurante" ColumnName="direcRestaurante" />
+                <ScalarProperty Name="nomDistrito" ColumnName="nomDistrito" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_ListarRestaurante" FunctionName="reservaRestauranteModel.Store.usp_ListarRestaurante">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="reservaRestauranteModel.usp_ListarRestaurante_Result">
+                <ScalarProperty Name="idRestaurante" ColumnName="idRestaurante" />
+                <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+                <ScalarProperty Name="idDistrito" ColumnName="idDistrito" />
+                <ScalarProperty Name="nomRestaurante" ColumnName="nomRestaurante" />
+                <ScalarProperty Name="direcRestaurante" ColumnName="direcRestaurante" />
+                <ScalarProperty Name="teleRestaurante" ColumnName="teleRestaurante" />
+                <ScalarProperty Name="fecRegistroRestaurante" ColumnName="fecRegistroRestaurante" />
+                <ScalarProperty Name="usuRegistroRestaurante" ColumnName="usuRegistroRestaurante" />
+                <ScalarProperty Name="fecUltModiRestaurante" ColumnName="fecUltModiRestaurante" />
+                <ScalarProperty Name="usuUltModiRestaurante" ColumnName="usuUltModiRestaurante" />
+                <ScalarProperty Name="estadoRestaurante" ColumnName="estadoRestaurante" />
+                <ScalarProperty Name="nomDistrito" ColumnName="nomDistrito" />
+                <ScalarProperty Name="nomCategoria" ColumnName="nomCategoria" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_ListarRestauranteActivos" FunctionName="reservaRestauranteModel.Store.usp_ListarRestauranteActivos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="reservaRestauranteModel.usp_ListarRestauranteActivos_Result">
+                <ScalarProperty Name="idRestaurante" ColumnName="idRestaurante" />
+                <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+                <ScalarProperty Name="idDistrito" ColumnName="idDistrito" />
+                <ScalarProperty Name="nomRestaurante" ColumnName="nomRestaurante" />
+                <ScalarProperty Name="direcRestaurante" ColumnName="direcRestaurante" />
+                <ScalarProperty Name="teleRestaurante" ColumnName="teleRestaurante" />
+                <ScalarProperty Name="estadoRestaurante" ColumnName="estadoRestaurante" />
+                <ScalarProperty Name="nomCategoria" ColumnName="nomCategoria" />
+                <ScalarProperty Name="nomDistrito" ColumnName="nomDistrito" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_NumPag_ListarReservasRestaurante_Paginacion" FunctionName="reservaRestauranteModel.Store.usp_NumPag_ListarReservasRestaurante_Paginacion" />
+          <FunctionImportMapping FunctionImportName="usp_ListarRestaurantePorDistrito" FunctionName="reservaRestauranteModel.Store.usp_ListarRestaurantePorDistrito">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="reservaRestauranteModel.usp_ListarRestaurantePorDistrito_Result">
+                <ScalarProperty Name="idRestaurante" ColumnName="idRestaurante" />
+                <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+                <ScalarProperty Name="idDistrito" ColumnName="idDistrito" />
+                <ScalarProperty Name="nomRestaurante" ColumnName="nomRestaurante" />
+                <ScalarProperty Name="direcRestaurante" ColumnName="direcRestaurante" />
+                <ScalarProperty Name="teleRestaurante" ColumnName="teleRestaurante" />
+                <ScalarProperty Name="estadoRestaurante" ColumnName="estadoRestaurante" />
+                <ScalarProperty Name="nomCategoria" ColumnName="nomCategoria" />
+                <ScalarProperty Name="nomDistrito" ColumnName="nomDistrito" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_ListarRestaurantePorCategoria" FunctionName="reservaRestauranteModel.Store.usp_ListarRestaurantePorCategoria">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="reservaRestauranteModel.usp_ListarRestaurantePorCategoria_Result">
+                <ScalarProperty Name="idRestaurante" ColumnName="idRestaurante" />
+                <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+                <ScalarProperty Name="idDistrito" ColumnName="idDistrito" />
+                <ScalarProperty Name="nomRestaurante" ColumnName="nomRestaurante" />
+                <ScalarProperty Name="direcRestaurante" ColumnName="direcRestaurante" />
+                <ScalarProperty Name="teleRestaurante" ColumnName="teleRestaurante" />
+                <ScalarProperty Name="estadoRestaurante" ColumnName="estadoRestaurante" />
+                <ScalarProperty Name="nomCategoria" ColumnName="nomCategoria" />
+                <ScalarProperty Name="nomDistrito" ColumnName="nomDistrito" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_ListarRestaurantePorCategoriaDistrito" FunctionName="reservaRestauranteModel.Store.usp_ListarRestaurantePorCategoriaDistrito">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="reservaRestauranteModel.usp_ListarRestaurantePorCategoriaDistrito_Result">
+                <ScalarProperty Name="idRestaurante" ColumnName="idRestaurante" />
+                <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+                <ScalarProperty Name="idDistrito" ColumnName="idDistrito" />
+                <ScalarProperty Name="nomRestaurante" ColumnName="nomRestaurante" />
+                <ScalarProperty Name="direcRestaurante" ColumnName="direcRestaurante" />
+                <ScalarProperty Name="teleRestaurante" ColumnName="teleRestaurante" />
+                <ScalarProperty Name="estadoRestaurante" ColumnName="estadoRestaurante" />
+                <ScalarProperty Name="nomCategoria" ColumnName="nomCategoria" />
+                <ScalarProperty Name="nomDistrito" ColumnName="nomDistrito" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_ListarReseñasTodas" FunctionName="reservaRestauranteModel.Store.usp_ListarReseñasTodas">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="reservaRestauranteModel.usp_ListarReseñasTodas_Result">
+                <ScalarProperty Name="idReseña" ColumnName="idReseña" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="idRestaurante" ColumnName="idRestaurante" />
+                <ScalarProperty Name="tituloReseña" ColumnName="tituloReseña" />
+                <ScalarProperty Name="contenidoReseña" ColumnName="contenidoReseña" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_ListarTodasReseñas" FunctionName="reservaRestauranteModel.Store.usp_ListarTodasReseñas">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="reservaRestauranteModel.usp_ListarTodasReseñas_Result">
+                <ScalarProperty Name="idReseña" ColumnName="idReseña" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="idRestaurante" ColumnName="idRestaurante" />
+                <ScalarProperty Name="tituloReseña" ColumnName="tituloReseña" />
+                <ScalarProperty Name="contenidoReseña" ColumnName="contenidoReseña" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="nomRestaurante" ColumnName="nomRestaurante" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_ListarReservasPorDia" FunctionName="reservaRestauranteModel.Store.usp_ListarReservasPorDia">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="reservaRestauranteModel.usp_ListarReservasPorDia_Result">
+                <ScalarProperty Name="idReserva" ColumnName="idReserva" />
+                <ScalarProperty Name="fechaReserva" ColumnName="fechaReserva" />
+                <ScalarProperty Name="cantPersonas" ColumnName="cantPersonas" />
+                <ScalarProperty Name="idRestaurante" ColumnName="idRestaurante" />
+                <ScalarProperty Name="nomRestaurante" ColumnName="nomRestaurante" />
+                <ScalarProperty Name="direcRestaurante" ColumnName="direcRestaurante" />
+                <ScalarProperty Name="nomDistrito" ColumnName="nomDistrito" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_ListarReservasPorDiaRestaurante" FunctionName="reservaRestauranteModel.Store.usp_ListarReservasPorDiaRestaurante">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="reservaRestauranteModel.usp_ListarReservasPorDiaRestaurante_Result">
+                <ScalarProperty Name="idReserva" ColumnName="idReserva" />
+                <ScalarProperty Name="fechaReserva" ColumnName="fechaReserva" />
+                <ScalarProperty Name="cantPersonas" ColumnName="cantPersonas" />
+                <ScalarProperty Name="idRestaurante" ColumnName="idRestaurante" />
+                <ScalarProperty Name="nomRestaurante" ColumnName="nomRestaurante" />
+                <ScalarProperty Name="direcRestaurante" ColumnName="direcRestaurante" />
+                <ScalarProperty Name="nomDistrito" ColumnName="nomDistrito" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_ListarReservasRestaurante1" FunctionName="reservaRestauranteModel.Store.usp_ListarReservasRestaurante">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="reservaRestauranteModel.usp_ListarReservasRestaurante1_Result">
+                <ScalarProperty Name="idReserva" ColumnName="idReserva" />
+                <ScalarProperty Name="fechaReserva" ColumnName="fechaReserva" />
+                <ScalarProperty Name="cantPersonas" ColumnName="cantPersonas" />
+                <ScalarProperty Name="idRestaurante" ColumnName="idRestaurante" />
+                <ScalarProperty Name="nomRestaurante" ColumnName="nomRestaurante" />
+                <ScalarProperty Name="direcRestaurante" ColumnName="direcRestaurante" />
+                <ScalarProperty Name="nomDistrito" ColumnName="nomDistrito" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="dniUsuario" ColumnName="dniUsuario" />
+                <ScalarProperty Name="correoUsuario" ColumnName="correoUsuario" />
+                <ScalarProperty Name="nomUsuario" ColumnName="nomUsuario" />
+                <ScalarProperty Name="apeUsuario" ColumnName="apeUsuario" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_ListarReservasRestaurantes" FunctionName="reservaRestauranteModel.Store.usp_ListarReservasRestaurantes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="reservaRestauranteModel.usp_ListarReservasRestaurantes_Result">
+                <ScalarProperty Name="idReserva" ColumnName="idReserva" />
+                <ScalarProperty Name="fechaReserva" ColumnName="fechaReserva" />
+                <ScalarProperty Name="cantPersonas" ColumnName="cantPersonas" />
+                <ScalarProperty Name="idRestaurante" ColumnName="idRestaurante" />
+                <ScalarProperty Name="nomRestaurante" ColumnName="nomRestaurante" />
+                <ScalarProperty Name="direcRestaurante" ColumnName="direcRestaurante" />
+                <ScalarProperty Name="nomDistrito" ColumnName="nomDistrito" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="dniUsuario" ColumnName="dniUsuario" />
+                <ScalarProperty Name="correoUsuario" ColumnName="correoUsuario" />
+                <ScalarProperty Name="nomUsuario" ColumnName="nomUsuario" />
+                <ScalarProperty Name="apeUsuario" ColumnName="apeUsuario" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_ListarReseña" FunctionName="reservaRestauranteModel.Store.usp_ListarReseña">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="reservaRestauranteModel.usp_ListarReseña_Result">
+                <ScalarProperty Name="idReseña" ColumnName="idReseña" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="idRestaurante" ColumnName="idRestaurante" />
+                <ScalarProperty Name="tituloReseña" ColumnName="tituloReseña" />
+                <ScalarProperty Name="contenidoReseña" ColumnName="contenidoReseña" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="nomRestaurante" ColumnName="nomRestaurante" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_ListarTopUsuarioReservasPorRestaurante" FunctionName="reservaRestauranteModel.Store.usp_ListarTopUsuarioReservasPorRestaurante">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="reservaRestauranteModel.usp_ListarTopUsuarioReservasPorRestaurante_Result">
+                <ScalarProperty Name="Cant" ColumnName="Cant" />
+                <ScalarProperty Name="nomUsuario" ColumnName="nomUsuario" />
+                <ScalarProperty Name="apeUsuario" ColumnName="apeUsuario" />
+                <ScalarProperty Name="nomRestaurante" ColumnName="nomRestaurante" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_NumPersonasDiaReservas" FunctionName="reservaRestauranteModel.Store.usp_NumPersonasDiaReservas" />
+          <FunctionImportMapping FunctionImportName="usp_NumPersonasDiaReservasRestaurante" FunctionName="reservaRestauranteModel.Store.usp_NumPersonasDiaReservasRestaurante" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

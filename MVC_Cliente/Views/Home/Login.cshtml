@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;700&display=swap" rel="stylesheet">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <section class="padded">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    @using (Html.BeginForm("Ingresar", "Usuario"))
+                    {
+                        <h2 class="titulo-subpaginas" style="margin-bottom: 50px;">Inicio de Sesión</h2>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="usuario" name="usuario">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 30px;">
+                            <input type="password" class="form-control" placeholder="clave" name="clave">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-buscar" id="btnIniciarSesion" style="margin-bottom: 100px;">
+                                Iniciar sesión
+                            </button>
+                        </div>
+                    }
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+        </div>
+    </section>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+</body>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="ee149daa-c7a4-42d6-b251-12ebc4e52147" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://DESKTOP-DGAUU9U/WCF_Reservas/ServiciosWCF.ServicioUsuarios.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServicioUsuarios.wsdl" MetadataType="Wsdl" ID="a5e1ce19-d6b5-4f9e-8bcb-2f39290ded2a" SourceId="1" SourceUrl="http://desktop-dgauu9u/WCF_Reservas/ServiciosWCF.ServicioUsuarios.svc?wsdl" />
+    <MetadataFile FileName="ServiciosWCF.xsd" MetadataType="Schema" ID="000671de-2de2-4cc6-b54d-fd34f7cd0b27" SourceId="1" SourceUrl="http://desktop-dgauu9u/WCF_Reservas/ServiciosWCF.ServicioUsuarios.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServiciosWCF.disco" MetadataType="Disco" ID="62da7bb2-2e5e-45e8-b481-9ad5a1f1f4e2" SourceId="1" SourceUrl="http://desktop-dgauu9u/WCF_Reservas/ServiciosWCF.ServicioUsuarios.svc?disco" />
+    <MetadataFile FileName="ServiciosWCF1.xsd" MetadataType="Schema" ID="37010a5b-4ac3-41ff-91ae-064d3ba00096" SourceId="1" SourceUrl="http://desktop-dgauu9u/WCF_Reservas/ServiciosWCF.ServicioUsuarios.svc?xsd=xsd2" />
+    <MetadataFile FileName="ServiciosWCF2.xsd" MetadataType="Schema" ID="5f6686c6-0ef2-4710-8738-d87b40d4457a" SourceId="1" SourceUrl="http://desktop-dgauu9u/WCF_Reservas/ServiciosWCF.ServicioUsuarios.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

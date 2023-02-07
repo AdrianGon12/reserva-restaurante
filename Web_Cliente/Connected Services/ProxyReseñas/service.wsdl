@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ServicioReseñas" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import namespace="http://tempuri.org/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/ServiciosWCF" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IServicioReseñas_GetAllReseñasRestaurante_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllReseñasRestaurante" />
+  </wsdl:message>
+  <wsdl:message name="IServicioReseñas_GetAllReseñasRestaurante_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllReseñasRestauranteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioReseñas_GetAllReseñasUsuario_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllReseñasUsuario" />
+  </wsdl:message>
+  <wsdl:message name="IServicioReseñas_GetAllReseñasUsuario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllReseñasUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioReseñas_GetReseña_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetReseña" />
+  </wsdl:message>
+  <wsdl:message name="IServicioReseñas_GetReseña_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetReseñaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioReseñas_UpdateReseña_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateReseña" />
+  </wsdl:message>
+  <wsdl:message name="IServicioReseñas_UpdateReseña_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateReseñaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioReseñas_InsertReseña_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertReseña" />
+  </wsdl:message>
+  <wsdl:message name="IServicioReseñas_InsertReseña_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertReseñaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioReseñas_DeleteReseña_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteReseña" />
+  </wsdl:message>
+  <wsdl:message name="IServicioReseñas_DeleteReseña_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteReseñaResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IServicioReseñas">
+    <wsdl:operation name="GetAllReseñasRestaurante">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioReseñas/GetAllReseñasRestaurante" message="tns:IServicioReseñas_GetAllReseñasRestaurante_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioReseñas/GetAllReseñasRestauranteResponse" message="tns:IServicioReseñas_GetAllReseñasRestaurante_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllReseñasUsuario">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioReseñas/GetAllReseñasUsuario" message="tns:IServicioReseñas_GetAllReseñasUsuario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioReseñas/GetAllReseñasUsuarioResponse" message="tns:IServicioReseñas_GetAllReseñasUsuario_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReseña">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioReseñas/GetReseña" message="tns:IServicioReseñas_GetReseña_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioReseñas/GetReseñaResponse" message="tns:IServicioReseñas_GetReseña_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateReseña">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioReseñas/UpdateReseña" message="tns:IServicioReseñas_UpdateReseña_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioReseñas/UpdateReseñaResponse" message="tns:IServicioReseñas_UpdateReseña_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertReseña">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioReseñas/InsertReseña" message="tns:IServicioReseñas_InsertReseña_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioReseñas/InsertReseñaResponse" message="tns:IServicioReseñas_InsertReseña_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteReseña">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioReseñas/DeleteReseña" message="tns:IServicioReseñas_DeleteReseña_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioReseñas/DeleteReseñaResponse" message="tns:IServicioReseñas_DeleteReseña_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IServicioReseñas" type="tns:IServicioReseñas">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAllReseñasRestaurante">
+      <soap:operation soapAction="http://tempuri.org/IServicioReseñas/GetAllReseñasRestaurante" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllReseñasUsuario">
+      <soap:operation soapAction="http://tempuri.org/IServicioReseñas/GetAllReseñasUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReseña">
+      <soap:operation soapAction="http://tempuri.org/IServicioReseñas/GetReseña" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateReseña">
+      <soap:operation soapAction="http://tempuri.org/IServicioReseñas/UpdateReseña" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertReseña">
+      <soap:operation soapAction="http://tempuri.org/IServicioReseñas/InsertReseña" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteReseña">
+      <soap:operation soapAction="http://tempuri.org/IServicioReseñas/DeleteReseña" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServicioReseñas">
+    <wsdl:port name="BasicHttpBinding_IServicioReseñas" binding="tns:BasicHttpBinding_IServicioReseñas">
+      <soap:address location="http://localhost:8733/Design_Time_Addresses/ServiciosWCF/ServicioRese%C3%B1as/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

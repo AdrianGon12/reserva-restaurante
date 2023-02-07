@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ServicioRestaurantes" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import namespace="http://tempuri.org/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/ServiciosWCF" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IServicioRestaurantes_GetAllRestaurantes_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllRestaurantes" />
+  </wsdl:message>
+  <wsdl:message name="IServicioRestaurantes_GetAllRestaurantes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllRestaurantesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioRestaurantes_GetAllRestaurantesActivo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllRestaurantesActivo" />
+  </wsdl:message>
+  <wsdl:message name="IServicioRestaurantes_GetAllRestaurantesActivo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllRestaurantesActivoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioRestaurantes_GetRestaurante_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRestaurante" />
+  </wsdl:message>
+  <wsdl:message name="IServicioRestaurantes_GetRestaurante_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRestauranteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioRestaurantes_InsertRestaurante_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertRestaurante" />
+  </wsdl:message>
+  <wsdl:message name="IServicioRestaurantes_InsertRestaurante_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertRestauranteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioRestaurantes_UpdateRestaurante_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateRestaurante" />
+  </wsdl:message>
+  <wsdl:message name="IServicioRestaurantes_UpdateRestaurante_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateRestauranteResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IServicioRestaurantes">
+    <wsdl:operation name="GetAllRestaurantes">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioRestaurantes/GetAllRestaurantes" message="tns:IServicioRestaurantes_GetAllRestaurantes_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioRestaurantes/GetAllRestaurantesResponse" message="tns:IServicioRestaurantes_GetAllRestaurantes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllRestaurantesActivo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioRestaurantes/GetAllRestaurantesActivo" message="tns:IServicioRestaurantes_GetAllRestaurantesActivo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioRestaurantes/GetAllRestaurantesActivoResponse" message="tns:IServicioRestaurantes_GetAllRestaurantesActivo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRestaurante">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioRestaurantes/GetRestaurante" message="tns:IServicioRestaurantes_GetRestaurante_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioRestaurantes/GetRestauranteResponse" message="tns:IServicioRestaurantes_GetRestaurante_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertRestaurante">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioRestaurantes/InsertRestaurante" message="tns:IServicioRestaurantes_InsertRestaurante_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioRestaurantes/InsertRestauranteResponse" message="tns:IServicioRestaurantes_InsertRestaurante_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRestaurante">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioRestaurantes/UpdateRestaurante" message="tns:IServicioRestaurantes_UpdateRestaurante_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioRestaurantes/UpdateRestauranteResponse" message="tns:IServicioRestaurantes_UpdateRestaurante_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IServicioRestaurantes" type="tns:IServicioRestaurantes">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAllRestaurantes">
+      <soap:operation soapAction="http://tempuri.org/IServicioRestaurantes/GetAllRestaurantes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllRestaurantesActivo">
+      <soap:operation soapAction="http://tempuri.org/IServicioRestaurantes/GetAllRestaurantesActivo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRestaurante">
+      <soap:operation soapAction="http://tempuri.org/IServicioRestaurantes/GetRestaurante" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertRestaurante">
+      <soap:operation soapAction="http://tempuri.org/IServicioRestaurantes/InsertRestaurante" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRestaurante">
+      <soap:operation soapAction="http://tempuri.org/IServicioRestaurantes/UpdateRestaurante" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServicioRestaurantes">
+    <wsdl:port name="BasicHttpBinding_IServicioRestaurantes" binding="tns:BasicHttpBinding_IServicioRestaurantes">
+      <soap:address location="http://localhost:8733/Design_Time_Addresses/ServiciosWCF/ServicioRestaurantes/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
